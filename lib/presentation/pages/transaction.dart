@@ -3,13 +3,20 @@ import '../theme/main_theme.dart';
 import '../bloc/svg/notification.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../routes.dart';
+import 'package:ficonsax/ficonsax.dart';
+import 'package:paywave/presentation/widget/route_icon.dart';
 
-class Notifications extends StatefulWidget {
+import 'package:paywave/presentation/widget/card_page.dart';
+import 'package:paywave/presentation/widget/home_page.dart';
+import 'package:paywave/presentation/widget/notifications_page.dart';
+import 'package:paywave/presentation/widget/profile_page.dart';
+
+class Transaction extends StatefulWidget {
   @override
-  _NotificationsState createState() => _NotificationsState();
+  _TransactionState createState() => _TransactionState();
 }
 
-class _NotificationsState extends State<Notifications> {
+class _TransactionState extends State<Transaction> {
   final AllTheme paywavetheme = AllTheme();
 
   bool filter = false;
@@ -24,20 +31,20 @@ class _NotificationsState extends State<Notifications> {
         children: [
           Row(
             children: [
-              Icon(Icons.notification_important, weight: 20, size: 40),
-              SizedBox(width: 6),
               GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(context, AppRoutes.transaction);
+                    Navigator.pop(context);
                   },
-                  child: Text(
-                    "Notifications",
-                    style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 38,
-                        fontStyle: FontStyle.normal,
-                        fontFamily: "Roboto"),
-                  ))
+                  child: Icon(Icons.arrow_back, weight: 20, size: 30)),
+              SizedBox(width: 6),
+              Text(
+                "Transaction History",
+                style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 34,
+                    fontStyle: FontStyle.normal,
+                    fontFamily: "Roboto"),
+              )
             ],
           ),
           // Icon(
@@ -53,7 +60,8 @@ class _NotificationsState extends State<Notifications> {
               child: !filter
                   ? SvgPicture.string(NotificationSvg().filter,
                       width: 30, height: 30)
-                  : Column(
+                  : Expanded(
+                      child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
@@ -81,7 +89,7 @@ class _NotificationsState extends State<Notifications> {
                             width: 80,
                             child: Text("Month"))
                       ],
-                    ))
+                    )))
         ],
       ),
       SizedBox(
@@ -94,49 +102,54 @@ class _NotificationsState extends State<Notifications> {
       SizedBox(
         height: 20.0,
       ),
-      Container(
-        padding: EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: Colors.white,
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "6:40 am",
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                      color: paywavetheme.customColor),
-                ),
-                SizedBox(
-                  height: 10.0,
-                ),
-                Text(
-                  "Payment",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21),
-                ),
-                SizedBox(
-                  height: 12.0,
-                ),
-                Text(
-                  "You payed #150 for tansportation",
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 19,
-                      color: paywavetheme.normalColor),
-                )
-              ],
-            ),
-            SvgPicture.string(NotificationSvg().notificationDollar,
-                width: 30, height: 30),
-          ],
+      GestureDetector(
+        onTap: () {
+          Navigator.pushNamed(context, AppRoutes.transaction_details);
+        },
+        child: Container(
+          padding: EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: Colors.white,
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "6:40 am",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                        color: paywavetheme.customColor),
+                  ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  Text(
+                    "Payment",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21),
+                  ),
+                  SizedBox(
+                    height: 12.0,
+                  ),
+                  Text(
+                    "You payed #150 for tansportation",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 19,
+                        color: paywavetheme.normalColor),
+                  )
+                ],
+              ),
+              SvgPicture.string(NotificationSvg().notificationDollar,
+                  width: 30, height: 30),
+            ],
+          ),
         ),
       ),
       SizedBox(
@@ -392,20 +405,45 @@ class _NotificationsState extends State<Notifications> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(children: [
-        Center(
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: _buildChildren(),
+        body: Stack(
+          children: [
+            Center(
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: _buildChildren(),
+                  ),
+                ),
               ),
+            ),
+          ],
+        ),
+        bottomNavigationBar: BottomAppBar(
+          shape: const CircularNotchedRectangle(),
+          clipBehavior: Clip.antiAliasWithSaveLayer,
+          child: SizedBox(
+            height: 80,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: const <Widget>[
+                RouteIcon(homeRoute),
+                RouteIcon(cardRoute),
+                SizedBox(width: 40), // The dummy child
+                RouteIcon(profileRoute),
+                RouteIcon(notificationsRoute),
+              ],
             ),
           ),
         ),
-      ]),
-    );
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: FloatingActionButton(
+          onPressed: (() {}),
+          tooltip: 'Increment',
+          shape: const CircleBorder(),
+          child: const Icon(IconsaxOutline.add, size: 36),
+        ));
   }
 }

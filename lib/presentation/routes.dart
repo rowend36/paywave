@@ -7,6 +7,9 @@ import 'package:paywave/presentation/screens/onboarding/screen3.dart';
 import 'package:paywave/presentation/pages/sign_up.dart';
 import 'package:paywave/presentation/pages/sign_in.dart';
 import 'package:paywave/presentation/pages/notifications.dart';
+import 'package:paywave/presentation/pages/transaction.dart';
+import 'package:paywave/presentation/screens/transaction/details.dart';
+import 'package:paywave/presentation/pages/main.dart';
 
 class AppRoutes {
   static const String home = '/';
@@ -17,6 +20,9 @@ class AppRoutes {
   static const String signup = '/signup';
   static const String signin = '/signin';
   static const String notification = '/notification';
+  static const String transaction = '/transaction';
+  static const String transaction_details = '/transaction/details';
+  static const String main = '/main';
 
   static Route<dynamic> generateRoute(RouteSettings routes) {
     switch (routes.name) {
@@ -24,6 +30,8 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => Splash());
       case onboarding:
         return MaterialPageRoute(builder: (_) => onBoarding());
+      // case onboarding:
+      // return MaterialPageRoute(builder: (_) => MainScreen());
       case onboarding_screen1:
         return MaterialPageRoute(builder: (_) => onBoardingScreenOne());
       case onboarding_screen2:
@@ -36,6 +44,13 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => SignIn());
       case notification:
         return MaterialPageRoute(builder: (_) => Notifications());
+      case transaction:
+        return MaterialPageRoute(builder: (_) => Transaction());
+      case transaction_details:
+        return MaterialPageRoute(builder: (_) => TransactionDetails());
+      case main:
+        return MaterialPageRoute(builder: (_) => MainScreen());
+
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(
