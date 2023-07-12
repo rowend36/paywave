@@ -16,4 +16,6 @@ class AllTheme {
     transform:
         GradientRotation(135 * 3.14159 / 180), // Convert degrees to radians
   );
+
+  final buttonInactiveColor = Color.fromRGBO(29, 27, 32, 0.12);
 }

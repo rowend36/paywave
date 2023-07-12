@@ -9,7 +9,10 @@ import 'package:paywave/presentation/pages/sign_in.dart';
 import 'package:paywave/presentation/pages/notifications.dart';
 import 'package:paywave/presentation/pages/transaction.dart';
 import 'package:paywave/presentation/screens/transaction/details.dart';
+import 'package:paywave/presentation/pages/otp_verification.dart';
 import 'package:paywave/presentation/pages/main.dart';
+import 'package:paywave/presentation/pages/create_pin.dart';
+import 'package:paywave/presentation/screens/incorrect_otp.dart';
 
 class AppRoutes {
   static const String home = '/';
@@ -23,15 +26,19 @@ class AppRoutes {
   static const String transaction = '/transaction';
   static const String transaction_details = '/transaction/details';
   static const String main = '/main';
+  static const String otp = "/otp";
+  static const String otp_invalid = '/otp/error';
+  static const String pin = '/pin';
+  static const String pin_success = '/success';
 
   static Route<dynamic> generateRoute(RouteSettings routes) {
     switch (routes.name) {
       case home:
         return MaterialPageRoute(builder: (_) => Splash());
-      case onboarding:
-        return MaterialPageRoute(builder: (_) => onBoarding());
       // case onboarding:
-      // return MaterialPageRoute(builder: (_) => MainScreen());
+      //   return MaterialPageRoute(builder: (_) => onBoarding());
+      case onboarding:
+        return MaterialPageRoute(builder: (_) => InvalidOtp());
       case onboarding_screen1:
         return MaterialPageRoute(builder: (_) => onBoardingScreenOne());
       case onboarding_screen2:
@@ -49,7 +56,13 @@ class AppRoutes {
       case transaction_details:
         return MaterialPageRoute(builder: (_) => TransactionDetails());
       case main:
+        return MaterialPageRoute(builder: (_) => OtpVerification());
+      case main:
         return MaterialPageRoute(builder: (_) => MainScreen());
+      case otp:
+        return MaterialPageRoute(builder: (_) => OtpVerification());
+      case pin:
+        return MaterialPageRoute(builder: (_) => CreatePin());
 
       default:
         return MaterialPageRoute(

@@ -402,48 +402,33 @@ class _TransactionState extends State<Transaction> {
     ];
   }
 
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Stack(
-          children: [
-            Center(
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: _buildChildren(),
-                  ),
+      body: Stack(
+        children: [
+          Center(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: _buildChildren(),
                 ),
               ),
             ),
-          ],
-        ),
-        bottomNavigationBar: BottomAppBar(
-          shape: const CircularNotchedRectangle(),
-          clipBehavior: Clip.antiAliasWithSaveLayer,
-          child: SizedBox(
-            height: 80,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: const <Widget>[
-                RouteIcon(homeRoute),
-                RouteIcon(cardRoute),
-                SizedBox(width: 40), // The dummy child
-                RouteIcon(profileRoute),
-                RouteIcon(notificationsRoute),
-              ],
-            ),
           ),
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        floatingActionButton: FloatingActionButton(
-          onPressed: (() {}),
-          tooltip: 'Increment',
-          shape: const CircleBorder(),
-          child: const Icon(IconsaxOutline.add, size: 36),
-        ));
+        ],
+      ),
+    );
   }
 }
