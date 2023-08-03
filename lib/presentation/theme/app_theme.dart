@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-MaterialColor bodyColor = MaterialColor(
+MaterialColor bodyColor = const MaterialColor(
   0xFFF3F3F3,
   <int, Color>{
     50: Color(0xFFFAFAFA),

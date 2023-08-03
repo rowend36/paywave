@@ -6,11 +6,6 @@ import '../routes.dart';
 import 'package:ficonsax/ficonsax.dart';
 import 'package:paywave/presentation/widget/route_icon.dart';
 
-import 'package:paywave/presentation/widget/card_page.dart';
-import 'package:paywave/presentation/widget/home_page.dart';
-import 'package:paywave/presentation/widget/notifications_page.dart';
-import 'package:paywave/presentation/widget/profile_page.dart';
-
 class Transaction extends StatefulWidget {
   @override
   _TransactionState createState() => _TransactionState();

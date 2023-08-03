@@ -10,7 +10,7 @@ import 'package:paywave/presentation/pages/notifications.dart';
 import 'package:paywave/presentation/pages/transaction.dart';
 import 'package:paywave/presentation/screens/transaction/details.dart';
 import 'package:paywave/presentation/pages/otp_verification.dart';
-import 'package:paywave/presentation/pages/main.dart';
+import 'package:paywave/presentation/screens/main/main_screen.dart';
 import 'package:paywave/presentation/pages/create_pin.dart';
 import 'package:paywave/presentation/screens/incorrect_otp.dart';
 import 'package:paywave/presentation/screens/pin_success.dart';
@@ -47,10 +47,10 @@ class AppRoutes {
     switch (routes.name) {
       case home:
         return MaterialPageRoute(builder: (_) => Splash());
-      // case onboarding:
-      //   return MaterialPageRoute(builder: (_) => onBoarding());
       case onboarding:
-        return MaterialPageRoute(builder: (_) => SendFund());
+        return MaterialPageRoute(builder: (_) => onBoarding());
+      // case onboarding:
+      //   return MaterialPageRoute(builder: (_) => InvalidOtp());
       case onboarding_screen1:
         return MaterialPageRoute(builder: (_) => onBoardingScreenOne());
       case onboarding_screen2:
@@ -68,9 +68,7 @@ class AppRoutes {
       case transaction_details:
         return MaterialPageRoute(builder: (_) => TransactionDetails());
       case main:
-        return MaterialPageRoute(builder: (_) => OtpVerification());
-      case main:
-        return MaterialPageRoute(builder: (_) => MainScreen());
+        return MaterialPageRoute(builder: (_) => const MainScreen());
       case otp:
         return MaterialPageRoute(builder: (_) => OtpVerification());
       case pin:

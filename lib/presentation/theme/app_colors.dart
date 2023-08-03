@@ -9,6 +9,15 @@ class AppColors {
   static const Color lightOnPrimary = Color(0xFFFFFFFF);
   static const Color darkOnPrimary = Color(0xFF4A007F);
   static const Color primary10 = Color(0xFF2C0050);
+  static const Color white = Color(0xFFFFFFFF);
 
   static const List<Color> gradient1 = [Color(0xFF9A11FF), Color(0xFF01C8FF)];
+  static MaterialStateProperty<T> toMaterialState<T>(T value) {
+    return MaterialStateProperty.resolveWith((states) {
+      return value;
+    });
+  }
+
+  static final primaryMaterialState =
+      AppColors.toMaterialState(AppColors.primary);
 }

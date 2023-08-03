@@ -2,17 +2,17 @@ import 'dart:math';
 
 import 'package:ficonsax/ficonsax.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:paywave/presentation/widget/route_icon.dart';
 import 'package:paywave/presentation/bloc/logic/auth.dart';
 import 'package:paywave/presentation/bloc/logic/finances.dart';
 import 'package:paywave/data/models/app_route.dart';
 import 'package:paywave/data/models/user.dart';
 import 'package:paywave/data/models/user_account.dart';
-import 'package:paywave/presentation/widget/card_page.dart';
-import 'package:paywave/presentation/widget/home_page.dart';
-import 'package:paywave/presentation/widget/notifications_page.dart';
-import 'package:paywave/presentation/widget/profile_page.dart';
-import 'package:provider/provider.dart';
+import 'package:paywave/presentation/screens/main/pages/card/card_page.dart';
+import 'package:paywave/presentation/screens/main/pages/home/home_page.dart';
+import 'package:paywave/presentation/screens/main/pages/notifications/notifications_page.dart';
+import 'package:paywave/presentation/screens/main/pages/profile/profile_page.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -82,14 +82,14 @@ class _MainScreenState extends State<MainScreen> {
             },
             children: pages,
           ),
-          bottomNavigationBar: BottomAppBar(
-            shape: const CircularNotchedRectangle(),
+          bottomNavigationBar: const BottomAppBar(
+            shape: CircularNotchedRectangle(),
             clipBehavior: Clip.antiAliasWithSaveLayer,
             child: SizedBox(
               height: 80,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: const <Widget>[
+                children: <Widget>[
                   RouteIcon(homeRoute),
                   RouteIcon(cardRoute),
                   SizedBox(width: 40), // The dummy child
