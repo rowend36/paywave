@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:paywave/presentation/screens/main/main_screen.dart';
 import 'package:paywave/presentation/screens/main/pages/card/card_page.dart';
 import 'package:paywave/presentation/theme/app_colors.dart';
-import 'package:paywave/presentation/widget/onetapcard_view.dart';
+import 'package:paywave/presentation/widget/onetap_card.dart';
 import 'package:paywave/data/models/user.dart';
 import 'package:paywave/data/models/user_account.dart';
 import 'package:provider/provider.dart';
@@ -124,6 +124,7 @@ class _HomeTopWidgetState extends State<HomeTopWidget> {
               maxHeight: double.infinity,
               alignment: Alignment.topCenter,
               child: Stack(
+                alignment: Alignment.topCenter,
                 children: [
                   const OneTapCard(),
                   Row(

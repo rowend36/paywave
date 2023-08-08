@@ -5,6 +5,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../routes.dart';
 
 class Notifications extends StatefulWidget {
+  const Notifications({super.key});
+
   @override
   _NotificationsState createState() => _NotificationsState();
 }

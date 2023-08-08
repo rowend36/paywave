@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:paywave/presentation/routes.dart';
-import 'dart:async';
 import '../../theme/main_theme.dart';
 
 class onBoardingScreenOne extends StatefulWidget {
