@@ -25,14 +25,26 @@ class InvalidOtp extends StatelessWidget {
           ),
           // Overlay Widget
           Positioned.fill(
-            child: OtpVerification(),
+            child: Opacity(
+              opacity: 0.7,
+              child: OtpVerification(),
+            ),
           ),
-          Positioned.fill(
+          Positioned(
+            top: MediaQuery.of(context).size.height * 0.4,
+            left: 50,
+            right: 50,
             child: Container(
-              color: Colors.transparent, // Set the overlay color to transparent
-              child: Center(
+              padding: EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.white,
+              ),
+              child: Padding(
+                padding: EdgeInsets.all(20),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Image.asset(
                       'public/images/error_avatar.png',
@@ -40,24 +52,29 @@ class InvalidOtp extends StatelessWidget {
                       height: 50,
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 15,
                     ),
-                    Text("Incorrect OTP"),
+                    Text(
+                      "Incorrect OTP",
+                      style: TextStyle(color: Colors.red, fontSize: 25),
+                    ),
                     SizedBox(
-                      height: 10,
+                      height: 13,
                     ),
                     Text("Please enter the correct OTP "),
                     SizedBox(
-                      height: 10,
+                      height: 17,
                     ),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
                       child: Container(
                         width: MediaQuery.of(context).size.width * 0.9,
                         padding: EdgeInsets.fromLTRB(0, 15, 0, 15),
                         decoration: BoxDecoration(
                           border: Border.all(
-                            color: Color(0xFF7C757E),
+                            color: paywavetheme.buttonInactiveColor,
                             width: 2.0,
                           ),
                           borderRadius: BorderRadius.circular(10),
@@ -66,6 +83,7 @@ class InvalidOtp extends StatelessWidget {
                         child: Text(
                           "OK",
                           textAlign: TextAlign.center,
+                          style: TextStyle(color: paywavetheme.customColor),
                         ),
                       ),
                     ),

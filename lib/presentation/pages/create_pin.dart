@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
 import '../theme/main_theme.dart';
 import '../routes.dart';
-import '../bloc/svg/notification.dart';
+import '../bloc/svg/svg.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class CreatePin extends StatefulWidget {
@@ -117,9 +117,13 @@ class _CreatePinState extends State<CreatePin> {
                         ),
                     ],
                   ),
-                  SizedBox(height: 16.0),
+                  SizedBox(height: 40.0),
                   GestureDetector(
-                    onTap: isPinComplete() ? () {} : null,
+                    onTap: isPinComplete()
+                        ? () {
+                            Navigator.pushNamed(context, AppRoutes.pin_success);
+                          }
+                        : null,
                     child: Container(
                       padding: EdgeInsets.all(20),
                       width: MediaQuery.of(context).size.width * 0.9,

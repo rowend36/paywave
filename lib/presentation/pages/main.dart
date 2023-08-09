@@ -107,7 +107,6 @@ class _MainScreenState extends State<MainScreen> {
             shape: const CircleBorder(),
             child: const Icon(IconsaxOutline.add, size: 36),
           ),
-        )
-        );
+        ));
   }
 }

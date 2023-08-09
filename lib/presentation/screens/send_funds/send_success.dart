@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import '../pages/create_pin.dart';
-import '../theme/main_theme.dart';
+import '../../pages/create_pin.dart';
+import '../../theme/main_theme.dart';
+import 'package:paywave/presentation/routes.dart';
 
-class PinSuccess extends StatelessWidget {
+class SendSuccess extends StatelessWidget {
   final AllTheme paywavetheme = AllTheme();
 
   @override
@@ -11,25 +12,25 @@ class PinSuccess extends StatelessWidget {
       body: Stack(
         children: [
           // Background Widget
-          Container(
-            color: Colors.blue, // Set the background color
-            child: Center(
-              child: Opacity(
-                opacity: 0.7, // Set the desired opacity (0.0 to 1.0)
-                child: Text(
-                  'Background Widget',
-                  style: TextStyle(color: Colors.white, fontSize: 24.0),
-                ),
-              ),
-            ),
-          ),
-          // Overlay Widget
-          Positioned.fill(
-            child: Opacity(
-              opacity: 0.7,
-              child: CreatePin(),
-            ),
-          ),
+          // Container(
+          //   color: Colors.blue, // Set the background color
+          //   child: Center(
+          //     child: Opacity(
+          //       opacity: 0.7, // Set the desired opacity (0.0 to 1.0)
+          //       child: Text(
+          //         'Background Widget',
+          //         style: TextStyle(color: Colors.white, fontSize: 24.0),
+          //       ),
+          //     ),
+          //   ),
+          // ),
+          // // Overlay Widget
+          // Positioned.fill(
+          //   child: Opacity(
+          //     opacity: 0.7,
+          //     child: CreatePin(),
+          //   ),
+          // ),
           Positioned(
             top: MediaQuery.of(context).size.height * 0.4,
             left: 50,
@@ -70,22 +71,21 @@ class PinSuccess extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.pop(context);
+                        Navigator.pushNamed(context, AppRoutes.profile);
                       },
                       child: Container(
                         width: MediaQuery.of(context).size.width * 0.9,
                         padding: EdgeInsets.fromLTRB(0, 15, 0, 15),
                         decoration: BoxDecoration(
-                          gradient: paywavetheme.gradientTheme,
+                          color: paywavetheme.customColor,
                           border: Border.all(
                             color: paywavetheme.buttonInactiveColor,
                             width: 2.0,
                           ),
                           borderRadius: BorderRadius.circular(10),
-                          color: Colors.white, // Set the overlay color
                         ),
                         child: Text(
-                          "Confirm",
+                          "OK",
                           textAlign: TextAlign.center,
                           style: TextStyle(color: Colors.white),
                         ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../theme/main_theme.dart';
-import '../bloc/svg/notification.dart';
+import '../bloc/svg/svg.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../routes.dart';
 
