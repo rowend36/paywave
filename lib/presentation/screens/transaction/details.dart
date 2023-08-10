@@ -15,7 +15,7 @@ class _TransactionDetailsState extends State<TransactionDetails> {
 
   List<Widget> _buildChildren() {
     return [
-      SizedBox(
+      const SizedBox(
         height: 30,
       ),
       Row(
@@ -27,9 +27,9 @@ class _TransactionDetailsState extends State<TransactionDetails> {
                   onTap: () {
                     Navigator.pop(context);
                   },
-                  child: Icon(Icons.arrow_back, weight: 20, size: 30)),
-              SizedBox(width: 6),
-              Text(
+                  child: const Icon(Icons.arrow_back, weight: 20, size: 30)),
+              const SizedBox(width: 6),
+              const Text(
                 "Transaction Details",
                 style: TextStyle(
                     fontWeight: FontWeight.w600,
@@ -41,7 +41,7 @@ class _TransactionDetailsState extends State<TransactionDetails> {
           ),
         ],
       ),
-      SizedBox(
+      const SizedBox(
         height: 26.0,
       ),
       Center(
@@ -49,12 +49,12 @@ class _TransactionDetailsState extends State<TransactionDetails> {
           child: Column(children: [
             Container(
                 width: MediaQuery.of(context).size.width,
-                padding: EdgeInsets.all(15),
-                margin: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(15),
+                margin: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                    color: Color.fromRGBO(103, 80, 164, 0.16),
+                    color: const Color.fromRGBO(103, 80, 164, 0.16),
                     borderRadius: BorderRadius.circular(16.0)),
-                child: Column(
+                child: const Column(
                   children: [
                     Text(
                       "You sent",
@@ -85,8 +85,8 @@ class _TransactionDetailsState extends State<TransactionDetails> {
                   ],
                 )),
             Container(
-              padding: EdgeInsets.all(15),
-              margin: EdgeInsets.fromLTRB(10, 10, 10, 2),
+              padding: const EdgeInsets.all(15),
+              margin: const EdgeInsets.fromLTRB(10, 10, 10, 2),
               child: Column(
                 children: [
                   Row(
@@ -110,7 +110,7 @@ class _TransactionDetailsState extends State<TransactionDetails> {
                       )
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 16,
                   ),
                   Row(
@@ -137,7 +137,7 @@ class _TransactionDetailsState extends State<TransactionDetails> {
                 ],
               ),
             ),
-            Divider(
+            const Divider(
               color: Colors.grey, // Set the color of the line
               thickness: 0.5, // Set the thickness of the line
               indent: 16, // Set the left indent of the line
@@ -145,8 +145,8 @@ class _TransactionDetailsState extends State<TransactionDetails> {
             ),
             ////
             Container(
-              padding: EdgeInsets.all(15),
-              margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
+              padding: const EdgeInsets.all(15),
+              margin: const EdgeInsets.fromLTRB(10, 10, 10, 0),
               child: Column(
                 children: [
                   Row(
@@ -170,7 +170,7 @@ class _TransactionDetailsState extends State<TransactionDetails> {
                       )
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 16,
                   ),
                   Row(
@@ -197,15 +197,15 @@ class _TransactionDetailsState extends State<TransactionDetails> {
                 ],
               ),
             ),
-            Divider(
+            const Divider(
               color: Colors.grey, // Set the color of the line
               thickness: 0.5, // Set the thickness of the line
               indent: 16, // Set the left indent of the line
               endIndent: 16, // Set the right indent of the line
             ),
             Container(
-              padding: EdgeInsets.all(15),
-              margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
+              padding: const EdgeInsets.all(15),
+              margin: const EdgeInsets.fromLTRB(10, 10, 10, 0),
               child: Column(
                 children: [
                   Row(
@@ -232,28 +232,28 @@ class _TransactionDetailsState extends State<TransactionDetails> {
                 ],
               ),
             ),
-            Divider(
+            const Divider(
               color: Colors.grey, // Set the color of the line
               thickness: 0.5, // Set the thickness of the line
               indent: 16, // Set the left indent of the line
               endIndent: 16, // Set the right indent of the line
             ),
-            SizedBox(
+            const SizedBox(
               height: 8,
             ),
-            Divider(
+            const Divider(
               color: Colors.grey, // Set the color of the line
               thickness: 0.5, // Set the thickness of the line
               indent: 16, // Set the left indent of the line
               endIndent: 16, // Set the right indent of the line
             ),
-            SizedBox(
+            const SizedBox(
               height: 14,
             ),
 
             Container(
-              padding: EdgeInsets.all(15),
-              margin: EdgeInsets.fromLTRB(10, 10, 10, 20),
+              padding: const EdgeInsets.all(15),
+              margin: const EdgeInsets.fromLTRB(10, 10, 10, 20),
               decoration: BoxDecoration(
                   border: Border.all(style: BorderStyle.solid, width: 0.3),
                   borderRadius: BorderRadius.circular(10)),

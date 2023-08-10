@@ -2,16 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:paywave/presentation/theme/app_colors.dart';
 
 class MainStyles {
-  static ButtonStyle? outlinedButton1(BuildContext context) =>
-      OutlinedButton.styleFrom(
-              padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16)),
-              foregroundColor: AppColors.primary,
-              fixedSize: const Size(144, 48),
-              side: const BorderSide(color: AppColors.primary))
-          .merge(Theme.of(context).outlinedButtonTheme.style);
-
   static TextStyle? labelLarge(BuildContext context,
           {Color color = AppColors.primary}) =>
       Theme.of(context).textTheme.labelLarge?.copyWith(
@@ -31,15 +21,6 @@ class MainStyles {
           fontWeight: FontWeight.w500,
           height: 1.3333,
           letterSpacing: 0.5);
-
-  static ButtonStyle? listButton(BuildContext context) =>
-      ElevatedButton.styleFrom(
-              backgroundColor: AppColors.white,
-              elevation: 0,
-              padding: const EdgeInsets.only(left: 8, right: 18),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12)))
-          .merge(Theme.of(context).elevatedButtonTheme.style);
 
   static TextStyle? titleLarge(BuildContext context,
           {Color color = AppColors.lightOnPrimaryContainer}) =>
@@ -68,20 +49,15 @@ class MainStyles {
             fontWeight: FontWeight.w400,
             height: 1.42857,
           );
-
-  static ButtonStyle? dialogButton(BuildContext context,
-          {bool top = false, bool bottom = false}) =>
-      ElevatedButton.styleFrom(
-        backgroundColor: AppColors.primary,
-        foregroundColor: AppColors.lightOnPrimary,
-        elevation: 1,
-        padding: const EdgeInsets.all(20),
-        fixedSize: const Size.fromWidth(266),
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(
-                top: top ? const Radius.circular(16) : Radius.zero,
-                bottom: bottom ? const Radius.circular(16) : Radius.zero)),
-      ).merge(Theme.of(context).elevatedButtonTheme.style);
+  static TextStyle? bodyLarge(BuildContext context,
+          {Color color = AppColors.lightOnPrimaryContainer}) =>
+      Theme.of(context).textTheme.bodyMedium?.copyWith(
+            color: color,
+            fontSize: 16,
+            fontStyle: FontStyle.normal,
+            fontWeight: FontWeight.w400,
+            height: 1.5,
+          );
 
   static TextStyle? headlineMedium(BuildContext context,
           {Color color = AppColors.lightOnPrimaryContainer}) =>
@@ -91,6 +67,16 @@ class MainStyles {
             fontStyle: FontStyle.normal,
             fontWeight: FontWeight.w600,
             height: 1.2857,
+          );
+  static TextStyle? headlineLarge(BuildContext context,
+          {Color color = AppColors.darkPrimaryFixedDim}) =>
+      Theme.of(context).textTheme.headlineLarge?.copyWith(
+            color: color,
+            fontSize: 32,
+            fontStyle: FontStyle.normal,
+            fontWeight: FontWeight.w600,
+            height: 1.25,
+            leadingDistribution: TextLeadingDistribution.even,
           );
 
   static TextStyle? headlineSmall(BuildContext context,
@@ -112,7 +98,52 @@ class MainStyles {
             height: 1.1555,
           );
 
-  static ButtonStyle? paymentLimitButton(BuildContext context) =>
+  static ButtonStyle? outlinedButton1(BuildContext context) =>
+      OutlinedButton.styleFrom(
+              padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16)),
+              foregroundColor: AppColors.primary,
+              fixedSize: const Size(144, 48),
+              side: const BorderSide(color: AppColors.primary))
+          .merge(Theme.of(context).outlinedButtonTheme.style);
+
+  static ButtonStyle? elevatedButton(BuildContext context) =>
+      ElevatedButton.styleFrom(
+        backgroundColor: AppColors.primary,
+        foregroundColor: AppColors.lightOnPrimary,
+        elevation: 1,
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 24),
+        fixedSize: const Size.fromHeight(44),
+        textStyle: bodyLarge(context),
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(8))),
+      ).merge(Theme.of(context).elevatedButtonTheme.style);
+
+  static ButtonStyle? floatingDialogButton(BuildContext context,
+          {bool top = false, bool bottom = false}) =>
+      ElevatedButton.styleFrom(
+        backgroundColor: AppColors.primary,
+        foregroundColor: AppColors.lightOnPrimary,
+        elevation: 1,
+        padding: const EdgeInsets.all(20),
+        fixedSize: const Size.fromWidth(266),
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+                top: top ? const Radius.circular(16) : Radius.zero,
+                bottom: bottom ? const Radius.circular(16) : Radius.zero)),
+      ).merge(Theme.of(context).elevatedButtonTheme.style);
+
+  static ButtonStyle? listButton(BuildContext context) =>
+      ElevatedButton.styleFrom(
+              backgroundColor: AppColors.white,
+              elevation: 0,
+              padding: const EdgeInsets.only(left: 8, right: 18),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12)))
+          .merge(Theme.of(context).elevatedButtonTheme.style);
+
+  static ButtonStyle? whiteFlatButton(BuildContext context) =>
       OutlinedButton.styleFrom(
         backgroundColor: AppColors.white,
         foregroundColor: AppColors.lightOnPrimaryContainer,
@@ -125,4 +156,19 @@ class MainStyles {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
         foregroundColor: AppColors.primary,
       ).merge(Theme.of(context).textButtonTheme.style);
+
+  static ButtonStyle? whiteListButton(BuildContext context,
+          {bool top = false, bool bottom = false}) =>
+      ElevatedButton.styleFrom(
+        backgroundColor: AppColors.white,
+        foregroundColor: AppColors.black,
+        elevation: 1,
+        alignment: Alignment.centerLeft,
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        minimumSize: const Size.fromHeight(60),
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+                top: top ? const Radius.circular(16) : Radius.zero,
+                bottom: bottom ? const Radius.circular(16) : Radius.zero)),
+      ).merge(Theme.of(context).elevatedButtonTheme.style);
 }

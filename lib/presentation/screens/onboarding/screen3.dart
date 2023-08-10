@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:paywave/presentation/routes.dart';
-import 'dart:async';
 import '../../theme/main_theme.dart';
 
 class onBoardingScreenThree extends StatefulWidget {
@@ -37,7 +36,7 @@ class _onBoardingScreenThreeState extends State<onBoardingScreenThree> {
                       fit: BoxFit.cover,
                       width: 150,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 50.0,
                     ),
                     Image.asset(
@@ -45,7 +44,7 @@ class _onBoardingScreenThreeState extends State<onBoardingScreenThree> {
                       fit: BoxFit.cover,
                       width: 300,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 12.0,
                     ),
                     Text(
@@ -57,7 +56,7 @@ class _onBoardingScreenThreeState extends State<onBoardingScreenThree> {
                         color: paywavetheme.customColor,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 12.0,
                     ),
                     Text(
@@ -92,17 +91,17 @@ class _onBoardingScreenThreeState extends State<onBoardingScreenThree> {
                       Dot(
                         color: paywavetheme.normalColor,
                       ),
-                      SizedBox(width: 8),
+                      const SizedBox(width: 8),
                       Dot(
                         color: paywavetheme.normalColor,
                       ),
-                      SizedBox(width: 8),
+                      const SizedBox(width: 8),
                       Dot(
                         color: paywavetheme.customColor,
                         width: 24,
                       ),
                     ]),
-                    SizedBox(
+                    const SizedBox(
                       height: 8.0,
                     ),
                     GestureDetector(
@@ -114,7 +113,7 @@ class _onBoardingScreenThreeState extends State<onBoardingScreenThree> {
                           gradient: paywavetheme.gradientTheme,
                           borderRadius: BorderRadius.circular(8.0),
                         ),
-                        child: Padding(
+                        child: const Padding(
                           padding: EdgeInsets.all(12.0),
                           child: Row(children: [
                             Icon(

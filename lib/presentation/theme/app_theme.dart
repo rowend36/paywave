@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:paywave/presentation/theme/app_colors.dart';
+import 'package:paywave/utils/create_material_color.dart';
 
 MaterialColor bodyColor = const MaterialColor(
   0xFFF3F3F3,
@@ -18,5 +20,13 @@ MaterialColor bodyColor = const MaterialColor(
 
 final ThemeData appTheme = ThemeData(
   primarySwatch: bodyColor,
+  // Add more theme configurations as needed
+);
+
+final ThemeData appTheme2 = ThemeData(
+  primarySwatch: createMaterialColor(AppColors.primary),
+  inputDecorationTheme: const InputDecorationTheme(
+      border: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(4)))),
   // Add more theme configurations as needed
 );

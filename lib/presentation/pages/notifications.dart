@@ -18,7 +18,7 @@ class _NotificationsState extends State<Notifications> {
 
   List<Widget> _buildChildren() {
     return [
-      SizedBox(
+      const SizedBox(
         height: 30,
       ),
       Row(
@@ -26,13 +26,13 @@ class _NotificationsState extends State<Notifications> {
         children: [
           Row(
             children: [
-              Icon(Icons.notification_important, weight: 20, size: 40),
-              SizedBox(width: 6),
+              const Icon(Icons.notification_important, weight: 20, size: 40),
+              const SizedBox(width: 6),
               GestureDetector(
                   onTap: () {
                     Navigator.pushNamed(context, AppRoutes.transaction);
                   },
-                  child: Text(
+                  child: const Text(
                     "Notifications",
                     style: TextStyle(
                         fontWeight: FontWeight.w600,
@@ -59,45 +59,45 @@ class _NotificationsState extends State<Notifications> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(10.0),
                                 topRight: Radius.circular(10.0),
                               )),
-                          padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                          padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
                           width: 80,
-                          child: Text("Day"),
+                          child: const Text("Day"),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 2,
                         ),
                         Container(
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.only(
                                   bottomLeft: Radius.circular(10.0),
                                   bottomRight: Radius.circular(10.0),
                                 )),
-                            padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                            padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
                             width: 80,
-                            child: Text("Month"))
+                            child: const Text("Month"))
                       ],
                     ))
         ],
       ),
-      SizedBox(
+      const SizedBox(
         height: 26.0,
       ),
-      Text(
+      const Text(
         "Today",
         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
       ),
-      SizedBox(
+      const SizedBox(
         height: 20.0,
       ),
       Container(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: Colors.white,
@@ -117,14 +117,14 @@ class _NotificationsState extends State<Notifications> {
                       fontSize: 16,
                       color: paywavetheme.customColor),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10.0,
                 ),
-                Text(
+                const Text(
                   "Payment",
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 12.0,
                 ),
                 Text(
@@ -141,11 +141,11 @@ class _NotificationsState extends State<Notifications> {
           ],
         ),
       ),
-      SizedBox(
+      const SizedBox(
         height: 20.0,
       ),
       Container(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: Colors.white,
@@ -165,14 +165,14 @@ class _NotificationsState extends State<Notifications> {
                       fontSize: 16,
                       color: paywavetheme.customColor),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10.0,
                 ),
-                Text(
+                const Text(
                   "Payment",
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 12.0,
                 ),
                 Text(
@@ -189,11 +189,11 @@ class _NotificationsState extends State<Notifications> {
           ],
         ),
       ),
-      SizedBox(
+      const SizedBox(
         height: 20.0,
       ),
       Container(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: Colors.white,
@@ -213,14 +213,14 @@ class _NotificationsState extends State<Notifications> {
                       fontSize: 16,
                       color: paywavetheme.customColor),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10.0,
                 ),
-                Text(
+                const Text(
                   "Payment",
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 12.0,
                 ),
                 Text(
@@ -237,18 +237,18 @@ class _NotificationsState extends State<Notifications> {
           ],
         ),
       ),
-      SizedBox(
+      const SizedBox(
         height: 28,
       ),
-      Text(
+      const Text(
         "5/27/15",
         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
       ),
-      SizedBox(
+      const SizedBox(
         height: 20.0,
       ),
       Container(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: Colors.white,
@@ -268,14 +268,14 @@ class _NotificationsState extends State<Notifications> {
                       fontSize: 16,
                       color: paywavetheme.customColor),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10.0,
                 ),
-                Text(
+                const Text(
                   "Payment",
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 12.0,
                 ),
                 Text(
@@ -292,11 +292,11 @@ class _NotificationsState extends State<Notifications> {
           ],
         ),
       ),
-      SizedBox(
+      const SizedBox(
         height: 20.0,
       ),
       Container(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: Colors.white,
@@ -316,14 +316,14 @@ class _NotificationsState extends State<Notifications> {
                       fontSize: 16,
                       color: paywavetheme.customColor),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10.0,
                 ),
-                Text(
+                const Text(
                   "Payment",
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 12.0,
                 ),
                 Text(
@@ -340,11 +340,11 @@ class _NotificationsState extends State<Notifications> {
           ],
         ),
       ),
-      SizedBox(
+      const SizedBox(
         height: 20.0,
       ),
       Container(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: Colors.white,
@@ -364,14 +364,14 @@ class _NotificationsState extends State<Notifications> {
                       fontSize: 16,
                       color: paywavetheme.customColor),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10.0,
                 ),
-                Text(
+                const Text(
                   "Payment",
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 12.0,
                 ),
                 Text(

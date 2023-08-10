@@ -53,20 +53,20 @@ class _SignInState extends State<SignIn> {
               fit: BoxFit.cover,
               width: 150,
             ),
-            SizedBox(
+            const SizedBox(
               height: 50,
             ),
-            Text(
+            const Text(
               "Sign In",
               style: TextStyle(
                 fontWeight: FontWeight.w700,
                 fontSize: 24,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 12,
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             Theme(
               data: ThemeData(
                 inputDecorationTheme: InputDecorationTheme(
@@ -80,7 +80,7 @@ class _SignInState extends State<SignIn> {
                 decoration: InputDecoration(
                     labelText: 'Email',
                     border:
-                        OutlineInputBorder(), // Set the border to a rectangular shape
+                        const OutlineInputBorder(), // Set the border to a rectangular shape
                     focusColor: paywavetheme.customColor
                     // prefixIcon: Icon(Icons.email_outlined),
                     ),
@@ -104,7 +104,7 @@ class _SignInState extends State<SignIn> {
                 }),
               ),
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             Theme(
               data: ThemeData(
                   inputDecorationTheme: InputDecorationTheme(
@@ -130,7 +130,7 @@ class _SignInState extends State<SignIn> {
                     },
                   ),
                   border:
-                      OutlineInputBorder(), // Set the border to a rectangular shape
+                      const OutlineInputBorder(), // Set the border to a rectangular shape
                 ),
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 validator: (text) {
@@ -148,7 +148,7 @@ class _SignInState extends State<SignIn> {
                     setState(() => {_passwordTextController.text = text}),
               ),
             ),
-            SizedBox(height: 3.0),
+            const SizedBox(height: 3.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -167,18 +167,18 @@ class _SignInState extends State<SignIn> {
                           },
                           activeColor: paywavetheme.customColor),
                     ),
-                    Text("Remember Password")
+                    const Text("Remember Password")
                   ],
                 ),
                 GestureDetector(
                   onTap: () {},
-                  child: Text(
+                  child: const Text(
                     "Forget Password ?",
                   ),
                 )
               ],
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             GestureDetector(
               onTap: () {
                 //push to screen 1
@@ -190,7 +190,7 @@ class _SignInState extends State<SignIn> {
                   gradient: paywavetheme.gradientTheme,
                   borderRadius: BorderRadius.circular(8.0),
                 ),
-                child: Padding(
+                child: const Padding(
                   padding: EdgeInsets.all(15.0),
                   child: Center(
                     child: Text(
@@ -205,11 +205,11 @@ class _SignInState extends State<SignIn> {
                 ),
               ),
             ),
-            SizedBox(height: 24.0),
+            const SizedBox(height: 24.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Don't have an account ? "),
+                const Text("Don't have an account ? "),
                 GestureDetector(
                   onTap: () {
                     Navigator.pushNamed(context, AppRoutes.signup);
@@ -223,7 +223,7 @@ class _SignInState extends State<SignIn> {
                 )
               ],
             ),
-            SizedBox(height: 24.0),
+            const SizedBox(height: 24.0),
             GestureDetector(
               onTap: () {
                 // Navigator.pushNamed(
@@ -235,7 +235,7 @@ class _SignInState extends State<SignIn> {
                   border: Border.all(color: paywavetheme.normalColor),
                 ),
                 child: Padding(
-                  padding: EdgeInsets.all(15.0),
+                  padding: const EdgeInsets.all(15.0),
                   child: Center(
                       child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -257,7 +257,7 @@ class _SignInState extends State<SignIn> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 15.0,
             ),
             GestureDetector(
@@ -272,7 +272,7 @@ class _SignInState extends State<SignIn> {
                   border: Border.all(color: paywavetheme.normalColor),
                 ),
                 child: Padding(
-                  padding: EdgeInsets.all(15.0),
+                  padding: const EdgeInsets.all(15.0),
                   child: Center(
                       child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,

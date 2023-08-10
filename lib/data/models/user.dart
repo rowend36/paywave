@@ -1,22 +1,26 @@
 import 'package:flutter/material.dart';
 
 class User {
-  final String name;
-  final String displayName;
   final String firstName;
   final String lastName;
+  final String email;
   final String phoneNumber;
-  final String photoURL;
+  final String? photoURL;
   const User(
-      {required this.name,
-      required this.displayName,
+      {required this.email,
       required this.firstName,
       required this.lastName,
       required this.phoneNumber,
-      required this.photoURL});
+      this.photoURL});
   get initials {
     return firstName[0] + lastName[0];
   }
+
+  get name {
+    return "$firstName $lastName";
+  }
+
+  get displayName => name;
 }
 
 typedef CurrentUser = ValueNotifier<User?>;

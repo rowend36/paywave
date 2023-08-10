@@ -40,7 +40,7 @@ class ChooseLimitDialog extends StatelessWidget {
                       finishWithResult(
                           context, DialogResult.numberOfTransactions);
                     },
-                    style: MainStyles.paymentLimitButton(context),
+                    style: MainStyles.whiteFlatButton(context),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -58,7 +58,7 @@ class ChooseLimitDialog extends StatelessWidget {
                     onPressed: () {
                       finishWithResult(context, DialogResult.time);
                     },
-                    style: MainStyles.paymentLimitButton(context),
+                    style: MainStyles.whiteFlatButton(context),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -75,7 +75,7 @@ class ChooseLimitDialog extends StatelessWidget {
                     onPressed: () {
                       finishWithResult(context, DialogResult.amount);
                     },
-                    style: MainStyles.paymentLimitButton(context),
+                    style: MainStyles.whiteFlatButton(context),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -92,7 +92,7 @@ class ChooseLimitDialog extends StatelessWidget {
                 onPressed: () {
                   finishWithResult(context, DialogResult.oneTimePayment);
                 },
-                style: MainStyles.paymentLimitButton(context),
+                style: MainStyles.whiteFlatButton(context),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

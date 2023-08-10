@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
 import '../theme/main_theme.dart';
 import "../routes.dart";
 
@@ -42,7 +41,7 @@ class _onBoardingState extends State<onBoarding> {
                         color: paywavetheme.customColor,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 5.0,
                     ),
                     Text(
@@ -75,7 +74,7 @@ class _onBoardingState extends State<onBoarding> {
                           gradient: paywavetheme.gradientTheme,
                           borderRadius: BorderRadius.circular(8.0),
                         ),
-                        child: Padding(
+                        child: const Padding(
                           padding: EdgeInsets.all(12.0),
                           child: Center(
                             child: Text(
@@ -90,7 +89,7 @@ class _onBoardingState extends State<onBoarding> {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 18.0,
                     ),
                     GestureDetector(
@@ -109,7 +108,7 @@ class _onBoardingState extends State<onBoarding> {
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         child: Padding(
-                          padding: EdgeInsets.all(12.0),
+                          padding: const EdgeInsets.all(12.0),
                           child: Center(
                             child: Text(
                               'Sign In',

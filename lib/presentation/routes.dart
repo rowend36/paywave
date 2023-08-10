@@ -46,23 +46,23 @@ class AppRoutes {
   static Route<dynamic> generateRoute(RouteSettings routes) {
     switch (routes.name) {
       case home:
-        return MaterialPageRoute(builder: (_) => Splash());
+        return MaterialPageRoute(builder: (_) => const Splash());
       case onboarding:
-        return MaterialPageRoute(builder: (_) => onBoarding());
+        return MaterialPageRoute(builder: (_) => const onBoarding());
       // case onboarding:
       //   return MaterialPageRoute(builder: (_) => InvalidOtp());
       case onboarding_screen1:
-        return MaterialPageRoute(builder: (_) => onBoardingScreenOne());
+        return MaterialPageRoute(builder: (_) => const onBoardingScreenOne());
       case onboarding_screen2:
-        return MaterialPageRoute(builder: (_) => onBoardingScreenTwo());
+        return MaterialPageRoute(builder: (_) => const onBoardingScreenTwo());
       case onboarding_screen3:
-        return MaterialPageRoute(builder: (_) => onBoardingScreenThree());
+        return MaterialPageRoute(builder: (_) => const onBoardingScreenThree());
       case signup:
         return MaterialPageRoute(builder: (_) => SignUp());
       case signin:
         return MaterialPageRoute(builder: (_) => SignIn());
       case notification:
-        return MaterialPageRoute(builder: (_) => Notifications());
+        return MaterialPageRoute(builder: (_) => const Notifications());
       case transaction:
         return MaterialPageRoute(builder: (_) => Transaction());
       case transaction_details:
@@ -90,7 +90,7 @@ class AppRoutes {
 
       default:
         return MaterialPageRoute(
-          builder: (_) => Scaffold(
+          builder: (_) => const Scaffold(
             body: Center(
               child: Text('Error: Route not found!'),
             ),

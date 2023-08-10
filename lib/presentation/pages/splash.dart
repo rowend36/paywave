@@ -10,7 +10,7 @@ class Splash extends StatefulWidget {
 
 class _SplashState extends State<Splash> {
   startTimer() {
-    Timer(Duration(seconds: 3), () async {
+    Timer(const Duration(seconds: 3), () async {
       Navigator.pushReplacementNamed(context, AppRoutes.main);
     });
   }

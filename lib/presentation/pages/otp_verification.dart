@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:email_validator/email_validator.dart';
 import '../theme/main_theme.dart';
 import '../routes.dart';
 import '../bloc/svg/svg.dart';
@@ -60,14 +59,14 @@ class _OtpVerificationState extends State<OtpVerification> {
               fit: BoxFit.cover,
               width: 150,
             ),
-            SizedBox(
+            const SizedBox(
               height: 50,
             ),
-            Text(
+            const Text(
               "Otp Verification",
               style: TextStyle(fontWeight: FontWeight.w700, fontSize: 28),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Text(
@@ -75,14 +74,14 @@ class _OtpVerificationState extends State<OtpVerification> {
               style: TextStyle(
                   fontWeight: FontWeight.w700, color: paywavetheme.normalColor),
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             Container(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                color: Color.fromRGBO(103, 80, 164, 0.08),
+                color: const Color.fromRGBO(103, 80, 164, 0.08),
               ),
               child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
                 SvgPicture.string(
@@ -90,14 +89,14 @@ class _OtpVerificationState extends State<OtpVerification> {
                   width: 20,
                   height: 20,
                 ),
-                SizedBox(width: 5),
-                Text("Otp expires in"),
-                SizedBox(width: 5),
-                Text("45 seconds",
+                const SizedBox(width: 5),
+                const Text("Otp expires in"),
+                const SizedBox(width: 5),
+                const Text("45 seconds",
                     style: TextStyle(color: Color.fromRGBO(0, 77, 100, 1.0))),
               ]),
             ),
-            SizedBox(
+            const SizedBox(
               height: 22,
             ),
             Container(
@@ -111,7 +110,7 @@ class _OtpVerificationState extends State<OtpVerification> {
                     children: [
                       for (int i = 0; i < 4; i++)
                         Container(
-                          margin: EdgeInsets.only(right: 12.0),
+                          margin: const EdgeInsets.only(right: 12.0),
                           width: MediaQuery.of(context).size.width * 0.19,
                           height: 70.0,
                           child: TextField(
@@ -127,12 +126,12 @@ class _OtpVerificationState extends State<OtpVerification> {
                             keyboardType: TextInputType.number,
                             maxLength: 1,
                             onChanged: (value) => updatePinValue(i, value),
-                            style: TextStyle(fontSize: 20.0),
+                            style: const TextStyle(fontSize: 20.0),
                           ),
                         ),
                     ],
                   ),
-                  SizedBox(height: 16.0),
+                  const SizedBox(height: 16.0),
                   GestureDetector(
                     onTap: isPinComplete()
                         ? () {
@@ -140,7 +139,7 @@ class _OtpVerificationState extends State<OtpVerification> {
                           }
                         : null,
                     child: Container(
-                      padding: EdgeInsets.all(20),
+                      padding: const EdgeInsets.all(20),
                       width: MediaQuery.of(context).size.width * 0.9,
                       decoration: BoxDecoration(
                           gradient: isPinComplete()

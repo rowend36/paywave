@@ -36,7 +36,7 @@ class _onBoardingScreenOneState extends State<onBoardingScreenOne> {
                       fit: BoxFit.cover,
                       width: 150,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 50.0,
                     ),
                     Image.asset(
@@ -44,7 +44,7 @@ class _onBoardingScreenOneState extends State<onBoardingScreenOne> {
                       fit: BoxFit.cover,
                       width: 300,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 12.0,
                     ),
                     Text(
@@ -56,7 +56,7 @@ class _onBoardingScreenOneState extends State<onBoardingScreenOne> {
                         color: paywavetheme.customColor,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 12.0,
                     ),
                     Text(
@@ -92,12 +92,12 @@ class _onBoardingScreenOneState extends State<onBoardingScreenOne> {
                         color: paywavetheme.customColor,
                         width: 24,
                       ),
-                      SizedBox(width: 8),
+                      const SizedBox(width: 8),
                       Dot(color: paywavetheme.normalColor),
-                      SizedBox(width: 8),
+                      const SizedBox(width: 8),
                       Dot(color: paywavetheme.normalColor),
                     ]),
-                    SizedBox(
+                    const SizedBox(
                       height: 8.0,
                     ),
                     GestureDetector(
@@ -110,7 +110,7 @@ class _onBoardingScreenOneState extends State<onBoardingScreenOne> {
                           gradient: paywavetheme.gradientTheme,
                           borderRadius: BorderRadius.circular(8.0),
                         ),
-                        child: Padding(
+                        child: const Padding(
                           padding: EdgeInsets.all(12.0),
                           child: Row(children: [
                             Icon(

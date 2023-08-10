@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
 import '../../theme/main_theme.dart';
 import 'package:paywave/presentation/routes.dart';
 
@@ -37,7 +36,7 @@ class _onBoardingScreenTwoState extends State<onBoardingScreenTwo> {
                       fit: BoxFit.cover,
                       width: 150,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 50.0,
                     ),
                     Image.asset(
@@ -45,7 +44,7 @@ class _onBoardingScreenTwoState extends State<onBoardingScreenTwo> {
                       fit: BoxFit.cover,
                       width: 300,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 12.0,
                     ),
                     Text(
@@ -57,7 +56,7 @@ class _onBoardingScreenTwoState extends State<onBoardingScreenTwo> {
                         color: paywavetheme.customColor,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 12.0,
                     ),
                     Text(
@@ -92,15 +91,15 @@ class _onBoardingScreenTwoState extends State<onBoardingScreenTwo> {
                       Dot(
                         color: paywavetheme.normalColor,
                       ),
-                      SizedBox(width: 8),
+                      const SizedBox(width: 8),
                       Dot(
                         color: paywavetheme.customColor,
                         width: 24,
                       ),
-                      SizedBox(width: 8),
+                      const SizedBox(width: 8),
                       Dot(color: paywavetheme.normalColor),
                     ]),
-                    SizedBox(
+                    const SizedBox(
                       height: 8.0,
                     ),
                     GestureDetector(
@@ -113,7 +112,7 @@ class _onBoardingScreenTwoState extends State<onBoardingScreenTwo> {
                           gradient: paywavetheme.gradientTheme,
                           borderRadius: BorderRadius.circular(8.0),
                         ),
-                        child: Padding(
+                        child: const Padding(
                           padding: EdgeInsets.all(12.0),
                           child: Row(children: [
                             Icon(

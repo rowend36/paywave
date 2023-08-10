@@ -2,21 +2,23 @@ import 'package:ficonsax/ficonsax.dart';
 import 'package:flutter/material.dart';
 import 'package:paywave/data/models/app_route.dart';
 import 'package:paywave/data/models/transactions.dart';
-import 'package:paywave/presentation/screens/main/pages/home/home_top_widget.dart';
-import 'package:paywave/presentation/screens/main/pages/home/transaction_item_widget.dart';
+import 'package:paywave/presentation/screens/main/pages/home/home_top_section.dart';
+import 'package:paywave/presentation/screens/main/widgets/send_funds_dialog.dart';
+import 'package:paywave/presentation/screens/main/widgets/transaction_item_widget.dart';
 import 'package:paywave/presentation/screens/main/main_styles.dart';
 import 'package:paywave/presentation/theme/app_colors.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
-  _sendFunds() {
-    // AlertDialog()
+  void _sendFunds(BuildContext context) {
+    showDialog(context: context, builder: (context) => const SendFundsDialog());
   }
+
   @override
   Widget build(BuildContext context) {
     return ListView(shrinkWrap: true, children: [
-      const HomeTopWidget(),
+      const HomeTopSection(),
       Padding(
         padding:
             const EdgeInsets.only(left: 24, right: 24, top: 32, bottom: 128),
@@ -28,7 +30,7 @@ class HomePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   OutlinedButton.icon(
-                    onPressed: () => _sendFunds,
+                    onPressed: () => _sendFunds(context),
                     style: MainStyles.outlinedButton1(context),
                     icon: const Icon(IconsaxBold.send_2),
                     label: const Text("Send Money"),
@@ -65,7 +67,8 @@ class HomePage extends StatelessWidget {
                   Text("Pay for transportation",
                       style: MainStyles.labelLarge(context)),
                   const Spacer(),
-                  const Icon(IconsaxOutline.arrow_right_3)
+                  const Icon(IconsaxOutline.arrow_right_3,
+                      color: AppColors.black)
                 ],
               ),
             ),
@@ -95,7 +98,8 @@ class HomePage extends StatelessWidget {
                   Text("Shopping checkout",
                       style: MainStyles.labelLarge(context)),
                   const Spacer(),
-                  const Icon(IconsaxOutline.arrow_right_3)
+                  const Icon(IconsaxOutline.arrow_right_3,
+                      color: AppColors.black)
                 ],
               ),
             ),

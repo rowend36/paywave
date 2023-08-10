@@ -13,7 +13,7 @@ class PinSuccess extends StatelessWidget {
           // Background Widget
           Container(
             color: Colors.blue, // Set the background color
-            child: Center(
+            child: const Center(
               child: Opacity(
                 opacity: 0.7, // Set the desired opacity (0.0 to 1.0)
                 child: Text(
@@ -35,13 +35,13 @@ class PinSuccess extends StatelessWidget {
             left: 50,
             right: 50,
             child: Container(
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 color: Colors.white,
               ),
               child: Padding(
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -51,21 +51,21 @@ class PinSuccess extends StatelessWidget {
                       width: 50,
                       height: 50,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 15,
                     ),
-                    Text(
+                    const Text(
                       "Successful",
                       style: TextStyle(fontSize: 25),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 13,
                     ),
-                    Text(
+                    const Text(
                       "You have successfully created a new transaction pin, Please do not share with any third party ",
                       style: TextStyle(),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 30,
                     ),
                     GestureDetector(
@@ -74,7 +74,7 @@ class PinSuccess extends StatelessWidget {
                       },
                       child: Container(
                         width: MediaQuery.of(context).size.width * 0.9,
-                        padding: EdgeInsets.fromLTRB(0, 15, 0, 15),
+                        padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
                         decoration: BoxDecoration(
                           gradient: paywavetheme.gradientTheme,
                           border: Border.all(
@@ -84,7 +84,7 @@ class PinSuccess extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                           color: Colors.white, // Set the overlay color
                         ),
-                        child: Text(
+                        child: const Text(
                           "Confirm",
                           textAlign: TextAlign.center,
                           style: TextStyle(color: Colors.white),

@@ -6,16 +6,17 @@ import 'package:paywave/presentation/theme/app_colors.dart';
 import 'package:paywave/presentation/widget/onetap_card.dart';
 import 'package:paywave/data/models/user.dart';
 import 'package:paywave/data/models/user_account.dart';
+import 'package:paywave/presentation/widget/user_avatar.dart';
 import 'package:provider/provider.dart';
 
-class HomeTopWidget extends StatefulWidget {
-  const HomeTopWidget({super.key});
+class HomeTopSection extends StatefulWidget {
+  const HomeTopSection({super.key});
 
   @override
-  State<HomeTopWidget> createState() => _HomeTopWidgetState();
+  State<HomeTopSection> createState() => _HomeTopSectionState();
 }
 
-class _HomeTopWidgetState extends State<HomeTopWidget> {
+class _HomeTopSectionState extends State<HomeTopSection> {
   bool showBalance = false;
   _toggleShowBalance() {
     setState(() {
@@ -54,15 +55,7 @@ class _HomeTopWidgetState extends State<HomeTopWidget> {
                     leadingDistribution: TextLeadingDistribution.even,
                   ),
                 ),
-                CircleAvatar(
-                    radius: 19.5,
-                    backgroundColor: const Color(0xFFD9D9D9),
-                    backgroundImage: currentUser.value?.photoURL != null
-                        ? NetworkImage(currentUser.value!.photoURL)
-                        : null,
-                    child: currentUser.value?.photoURL != null
-                        ? null
-                        : Text(currentUser.value?.initials ?? ""))
+                UserAvatar(currentUser.value)
               ],
             ),
           ),

@@ -35,7 +35,7 @@ class FloatingMenuDialog extends StatelessWidget {
               onPressed: () {
                 finishWithResult(context, DialogResult.paymentLimit);
               },
-              style: MainStyles.dialogButton(context, top: true),
+              style: MainStyles.floatingDialogButton(context, top: true),
               child: Text("Set Payment Limit",
                   style: MainStyles.titleMedium(context,
                       color: AppColors.lightOnPrimary))),
@@ -44,7 +44,7 @@ class FloatingMenuDialog extends StatelessWidget {
               onPressed: () {
                 finishWithResult(context, DialogResult.oneTimePayment);
               },
-              style: MainStyles.dialogButton(context, bottom: true),
+              style: MainStyles.floatingDialogButton(context, bottom: true),
               child: Text("One time payment",
                   style: MainStyles.titleMedium(context,
                       color: AppColors.lightOnPrimary))),

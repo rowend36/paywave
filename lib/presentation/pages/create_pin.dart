@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:email_validator/email_validator.dart';
 import '../theme/main_theme.dart';
 import '../routes.dart';
 import '../bloc/svg/svg.dart';
@@ -60,14 +59,14 @@ class _CreatePinState extends State<CreatePin> {
               fit: BoxFit.cover,
               width: 150,
             ),
-            SizedBox(
+            const SizedBox(
               height: 50,
             ),
-            Text(
+            const Text(
               "Create Transaction Pin",
               style: TextStyle(fontWeight: FontWeight.w700, fontSize: 28),
             ),
-            SizedBox(
+            const SizedBox(
               height: 22,
             ),
             Container(
@@ -81,7 +80,7 @@ class _CreatePinState extends State<CreatePin> {
                     children: [
                       for (int i = 0; i < 4; i++)
                         Container(
-                          margin: EdgeInsets.only(right: 12.0),
+                          margin: const EdgeInsets.only(right: 12.0),
                           width: MediaQuery.of(context).size.width * 0.19,
                           height: 70.0,
                           child: TextField(
@@ -112,12 +111,12 @@ class _CreatePinState extends State<CreatePin> {
                             keyboardType: TextInputType.number,
                             maxLength: 1,
                             onChanged: (value) => updatePinValue(i, value),
-                            style: TextStyle(fontSize: 20.0),
+                            style: const TextStyle(fontSize: 20.0),
                           ),
                         ),
                     ],
                   ),
-                  SizedBox(height: 40.0),
+                  const SizedBox(height: 40.0),
                   GestureDetector(
                     onTap: isPinComplete()
                         ? () {
@@ -125,7 +124,7 @@ class _CreatePinState extends State<CreatePin> {
                           }
                         : null,
                     child: Container(
-                      padding: EdgeInsets.all(20),
+                      padding: const EdgeInsets.all(20),
                       width: MediaQuery.of(context).size.width * 0.9,
                       decoration: BoxDecoration(
                           gradient: isPinComplete()
