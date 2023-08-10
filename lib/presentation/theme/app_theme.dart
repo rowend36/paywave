@@ -26,6 +26,7 @@ final ThemeData appTheme = ThemeData(
 final ThemeData appTheme2 = ThemeData(
   primarySwatch: createMaterialColor(AppColors.primary),
   inputDecorationTheme: const InputDecorationTheme(
+      floatingLabelBehavior: FloatingLabelBehavior.always,
       border: OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(4)))),
   // Add more theme configurations as needed

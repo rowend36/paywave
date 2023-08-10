@@ -393,7 +393,7 @@ class _SignUpState extends State<SignUp> {
             alignment: Alignment.bottomCenter,
             child: GestureDetector(
                 onTap: () {
-                  Navigator.pushNamed(context, AppRoutes.notification);
+                  Navigator.pushNamed(context, AppRoutes.main);
                 },
                 child: const Text(
                   "Swipe right to go back",

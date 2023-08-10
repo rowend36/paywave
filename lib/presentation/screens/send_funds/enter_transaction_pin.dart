@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:paywave/presentation/screens/main/widgets/floating_menu_dialog.dart';
 import '../../theme/main_theme.dart';
 import 'package:paywave/main.dart';
 import '../../bloc/svg/svg.dart';
@@ -143,7 +144,11 @@ class _EnterTransactionPinState extends State<EnterTransactionPin> {
                       onTap: isPinComplete()
                           ? () {
                               Navigator.pushNamed(
-                                  context, AppRoutes.send_funds_success);
+                                      context, AppRoutes.send_funds_success)
+                                  .then((_) {
+                                finishWithResult(context, null);
+                              });
+                              ;
                             }
                           : null,
                       child: Container(

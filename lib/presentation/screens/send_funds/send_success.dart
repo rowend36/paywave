@@ -71,7 +71,7 @@ class SendSuccess extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(context, AppRoutes.profile);
+                        Navigator.pop(context);
                       },
                       child: Container(
                         width: MediaQuery.of(context).size.width * 0.9,

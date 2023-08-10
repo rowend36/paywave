@@ -1,135 +1,92 @@
 import 'package:flutter/material.dart';
-import '../theme/main_theme.dart';
-import './main.dart';
-import '../bloc/svg/svg.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:paywave/presentation/routes.dart';
+import 'package:ficonsax/ficonsax.dart';
+import 'package:paywave/data/models/user.dart';
+import 'package:paywave/data/models/user_account.dart';
+import 'package:paywave/presentation/screens/main/main_styles.dart';
+import 'package:paywave/presentation/theme/app_colors.dart';
+import 'package:paywave/presentation/widget/user_avatar.dart';
+import 'package:provider/provider.dart';
 
-class Profile extends StatefulWidget {
-  @override
-  _ProfileState createState() => _ProfileState();
-}
-
-class _ProfileState extends State<Profile> {
-  final AllTheme paywavetheme = AllTheme();
-
-  final accountNumberTextController = TextEditingController();
-  final amountTextController = TextEditingController();
+class ProfilePage extends StatelessWidget {
+  const ProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          // // Overlay Widget
-          // Positioned.fill(
-          //   child: Opacity(
-          //     opacity: 0.7,
-          //     child: MainScreen(),
-          //   ),
-          // ),
-          Positioned(
-            right: 0,
-            bottom: 0,
-            left: 0,
-            child: Container(
-              // top: 50,
-              // left: 10,
-              // right: 10,
-              // width: MediaQuery.of(context).size.width * 0.1,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(30),
-                    topRight: Radius.circular(30)),
-                gradient: paywavetheme.gradientTheme,
-              ),
-              child: Container(
-                padding: EdgeInsets.all(20),
-                height: MediaQuery.of(context).size.height * 0.85,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(30),
-                      topRight: Radius.circular(30)),
-                  gradient: paywavetheme.gradientTheme,
-                ),
-                child: Padding(
-                  padding: EdgeInsets.all(5),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Transform.translate(
-                        offset: Offset(0, -40),
-                        child: Align(
-                          alignment: Alignment.topCenter,
-                          child: Column(children: [
-                            CircleAvatar(
-                                backgroundColor: paywavetheme.customColor),
-                            SizedBox(height: 20),
-                            Text(
-                              "Wade Waren",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                            SizedBox(height: 20),
-                            Text(
-                              "Account Number - 27267466766",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                            SizedBox(height: 20),
-                          ]),
-                        ),
-                      ),
-                      Container(
-                          padding: EdgeInsets.all(20),
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(10)),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              SizedBox(height: 10),
-                              GestureDetector(
-                                onTap: () {},
-                                child: Text(
-                                  "Set Financial Goals",
-                                  style: TextStyle(fontWeight: FontWeight.w600),
-                                ),
-                              ),
-                              SizedBox(height: 10),
-                              Divider(thickness: 1),
-                              SizedBox(height: 10),
-                              GestureDetector(
-                                  onTap: () {},
-                                  child: Text("Change Transaction Pin",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w600))),
-                              SizedBox(height: 10),
-                              Divider(thickness: 1),
-                              SizedBox(height: 10),
-                              GestureDetector(
-                                  onTap: () {},
-                                  child: Text("Change Log In Pin",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w600)))
-                            ],
-                          ))
-                    ],
+    User user = context.watch<CurrentUser>().value!;
+    return ListView(shrinkWrap: true, children: [
+      Stack(alignment: Alignment.topCenter, children: [
+        Padding(
+          padding: const EdgeInsets.only(top: 96),
+          child: Container(
+              height: 224,
+              constraints: BoxConstraints(
+                  minHeight: MediaQuery.of(context).size.height - 176),
+              padding: const EdgeInsets.only(top: 56, right: 24, left: 24),
+              decoration: const BoxDecoration(
+                  gradient: LinearGradient(colors: AppColors.gradient1),
+                  borderRadius:
+                      BorderRadius.vertical(top: Radius.circular(24))),
+              width: double.infinity,
+              child: Column(
+                children: [
+                  Text(user.displayName,
+                      style: MainStyles.titleMedium(context,
+                          color: AppColors.lightOnPrimary)),
+                  Padding(
+                      padding: const EdgeInsets.only(top: 8, bottom: 32),
+                      child: Consumer<UserAccount>(
+                        builder: (_, userAccount, __) => Text(
+                            "Account Number -  ${userAccount.acctNumber}",
+                            style: MainStyles.titleMedium(context,
+                                color: AppColors.lightOnPrimary)),
+                      )),
+                  ElevatedButton(
+                    onPressed: () {},
+                    style: MainStyles.whiteListButton(context, top: true),
+                    child: Text("Set Financial Goals",
+                        style: MainStyles.titleMedium(context,
+                            color: AppColors.black)),
                   ),
-                ),
-              ),
-            ),
-          )
-        ],
-      ),
-    );
+                  const Divider(height: 1, color: AppColors.neutral87),
+                  ElevatedButton(
+                    onPressed: () {},
+                    style: MainStyles.whiteListButton(context),
+                    child: Text("Change Transaction Pin",
+                        style: MainStyles.titleMedium(context,
+                            color: AppColors.black)),
+                  ),
+                  const Divider(height: 1, color: AppColors.neutral87),
+                  ElevatedButton(
+                    onPressed: () {},
+                    style: MainStyles.whiteListButton(context, bottom: true),
+                    child: Text("Change Log In Pin",
+                        style: MainStyles.titleMedium(context,
+                            color: AppColors.black)),
+                  ),
+                ],
+              )),
+        ),
+        Positioned(
+          top: 48,
+          child: Stack(alignment: Alignment.bottomRight, children: [
+            UserAvatar(user, radius: 43.5),
+            SizedBox.fromSize(
+                size: const Size.square(32),
+                child: ElevatedButton(
+                  onPressed: () {
+                    /* TODO */
+                  },
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.primary,
+                      foregroundColor: AppColors.lightOnPrimary,
+                      padding: EdgeInsets.zero,
+                      shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(24)))),
+                  child: const Icon(IconsaxBold.edit_2, size: 20),
+                ))
+          ]),
+        ),
+      ])
+    ]);
   }
 }

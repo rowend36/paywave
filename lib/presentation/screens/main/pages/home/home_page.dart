@@ -2,8 +2,8 @@ import 'package:ficonsax/ficonsax.dart';
 import 'package:flutter/material.dart';
 import 'package:paywave/data/models/app_route.dart';
 import 'package:paywave/data/models/transactions.dart';
+import 'package:paywave/presentation/pages/send_funds.dart';
 import 'package:paywave/presentation/screens/main/pages/home/home_top_section.dart';
-import 'package:paywave/presentation/screens/main/widgets/send_funds_dialog.dart';
 import 'package:paywave/presentation/screens/main/widgets/transaction_item_widget.dart';
 import 'package:paywave/presentation/screens/main/main_styles.dart';
 import 'package:paywave/presentation/theme/app_colors.dart';
@@ -12,7 +12,7 @@ import 'package:provider/provider.dart';
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
   void _sendFunds(BuildContext context) {
-    showDialog(context: context, builder: (context) => const SendFundsDialog());
+    showDialog(context: context, builder: (context) => const SendFunds());
   }
 
   @override
