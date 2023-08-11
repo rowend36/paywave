@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:paywave/presentation/bloc/logic/auth.dart';
 import '../theme/main_theme.dart';
 import '../routes.dart';
 
@@ -26,13 +27,15 @@ class _SignUpState extends State<SignUp> {
   void _submit() async {
     try {
       if (_formkey.currentState!.validate()) {
-        Map<String, dynamic> userMap = {
-          "name": nameTextEditingController.text.trim(),
-          "email": _emailTextController.text.trim(),
-          "address": addressTextEditingController.text.trim(),
-          "phone": phoneTextEditingController.text.trim(),
-          "password": _passwordTextController.text.trim(),
-        };
+        final navigator = Navigator.of(context);
+        await signUp(
+          email: _emailTextController.text.trim(),
+          password: _passwordTextController.text.trim(),
+          name: nameTextEditingController.text.trim(),
+          address: addressTextEditingController.text.trim(),
+          phone: phoneTextEditingController.text.trim(),
+        );
+        navigator.pushReplacementNamed(AppRoutes.main);
       } else {}
       // Navigator.of(context).pop();
     } catch (e) {

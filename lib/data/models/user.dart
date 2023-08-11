@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 
 class User {
   final String firstName;
+  final String id;
   final String lastName;
   final String email;
   final String phoneNumber;
   final String? photoURL;
   const User(
       {required this.email,
+      required this.id,
       required this.firstName,
       required this.lastName,
       required this.phoneNumber,

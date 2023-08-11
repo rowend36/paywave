@@ -27,7 +27,7 @@ class PreviewReceiverWidget extends StatelessWidget {
                 UserAvatar(receiver.user, radius: 19.25),
                 Padding(
                     padding: const EdgeInsets.only(top: 16, bottom: 12),
-                    child: Text(receiver.user.name,
+                    child: Text(receiver.user?.name,
                         style: MainStyles.bodyMedium(context,
                             color: AppColors.neutral24))),
                 Text("Account Number - ${receiver.acctNumber}",

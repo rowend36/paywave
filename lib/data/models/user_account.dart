@@ -6,10 +6,10 @@ class UserAccount extends ChangeNotifier {
   double acctBalance;
   String acctNumber;
   bool cardActivated;
-  User user;
+  User? user;
   UserAccount(
       {required this.acctBalance,
       required this.acctNumber,
       required this.cardActivated,
-      required this.user});
+      this.user});
 }

@@ -2,6 +2,7 @@ import 'package:ficonsax/ficonsax.dart';
 import 'package:flutter/material.dart';
 import 'package:paywave/data/models/app_route.dart';
 import 'package:paywave/data/models/transactions.dart';
+import 'package:paywave/presentation/bloc/logic/auth.dart';
 import 'package:paywave/presentation/pages/send_funds.dart';
 import 'package:paywave/presentation/screens/main/pages/home/home_top_section.dart';
 import 'package:paywave/presentation/screens/main/widgets/transaction_item_widget.dart';

@@ -45,7 +45,7 @@ class _HomeTopSectionState extends State<HomeTopSection> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Hi ${currentUser.value?.name ?? 'Lee'}",
+                  "Hi ${currentUser.value?.firstName ?? ''}",
                   style: textTheme.headlineLarge?.copyWith(
                     color: AppColors.darkPrimaryFixedDim,
                     fontSize: 32,

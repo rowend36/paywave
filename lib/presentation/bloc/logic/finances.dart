@@ -6,4 +6,4 @@ final userAccount = UserAccount(
     acctBalance: 0,
     acctNumber: "2730175548",
     cardActivated: true,
-    user: currentUser.value!);
+    user: currentUser.value);

@@ -12,7 +12,7 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    User user = context.watch<CurrentUser>().value!;
+    User? user = context.watch<CurrentUser>().value;
     return ListView(shrinkWrap: true, children: [
       Stack(alignment: Alignment.topCenter, children: [
         Padding(
@@ -29,7 +29,7 @@ class ProfilePage extends StatelessWidget {
               width: double.infinity,
               child: Column(
                 children: [
-                  Text(user.displayName,
+                  Text(user?.displayName ?? "",
                       style: MainStyles.titleMedium(context,
                           color: AppColors.lightOnPrimary)),
                   Padding(
