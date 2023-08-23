@@ -141,7 +141,7 @@ class _MainScreenState extends State<MainScreen> {
               },
               children: pages,
             ),
-            bottomNavigationBar: const BottomAppBar(
+            bottomNavigationBar: BottomAppBar(
               shape: CircularNotchedRectangle(),
               clipBehavior: Clip.antiAliasWithSaveLayer,
               child: SizedBox(

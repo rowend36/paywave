@@ -112,7 +112,7 @@ class _onBoardingScreenTwoState extends State<onBoardingScreenTwo> {
                           gradient: paywavetheme.gradientTheme,
                           borderRadius: BorderRadius.circular(8.0),
                         ),
-                        child: const Padding(
+                        child: Padding(
                           padding: EdgeInsets.all(12.0),
                           child: Row(children: [
                             Icon(

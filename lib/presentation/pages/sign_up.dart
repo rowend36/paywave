@@ -12,6 +12,7 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
   final AllTheme paywavetheme = AllTheme();
   bool _isPasswordVisible = false;
+  bool loadingApi = false;
 
   bool _isChecked = false; // State variable to track the checkbox state
   final _emailTextController = TextEditingController();
@@ -27,7 +28,12 @@ class _SignUpState extends State<SignUp> {
   void _submit() async {
     try {
       if (_formkey.currentState!.validate()) {
+        setState(() {
+          loadingApi = true;
+        });
         final navigator = Navigator.of(context);
+
+        // Call the signUp function
         await signUp(
           email: _emailTextController.text.trim(),
           password: _passwordTextController.text.trim(),
@@ -35,10 +41,17 @@ class _SignUpState extends State<SignUp> {
           address: addressTextEditingController.text.trim(),
           phone: phoneTextEditingController.text.trim(),
         );
+
+        // Registration successful, navigate to the main screen
         navigator.pushReplacementNamed(AppRoutes.main);
-      } else {}
-      // Navigator.of(context).pop();
+      } else {
+        // Handle form validation errors
+      }
     } catch (e) {
+      setState(() {
+        loadingApi = false;
+      });
+
       print(e.toString());
     }
   }
@@ -246,27 +259,25 @@ class _SignUpState extends State<SignUp> {
             ),
             const SizedBox(height: 16.0),
             GestureDetector(
-              onTap: () {
-                //push to screen 1
-                // Navigator.pushNamed(
-                //     context, AppRoutes.onboarding_screen1);
-              },
+              onTap: !loadingApi ? _submit : null,
               child: Container(
                 decoration: BoxDecoration(
                   gradient: paywavetheme.gradientTheme,
                   borderRadius: BorderRadius.circular(8.0),
                 ),
-                child: const Padding(
+                child: Padding(
                   padding: EdgeInsets.all(15.0),
                   child: Center(
-                    child: Text(
-                      'Create Account',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+                    child: !loadingApi
+                        ? Text(
+                            'Create Account',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          )
+                        : CircularProgressIndicator(color: Colors.white),
                   ),
                 ),
               ),
@@ -291,11 +302,7 @@ class _SignUpState extends State<SignUp> {
             ),
             const SizedBox(height: 24.0),
             GestureDetector(
-              onTap: () {
-                //push to screen 1
-                // Navigator.pushNamed(
-                //     context, AppRoutes.onboarding_screen1);
-              },
+              onTap: null,
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8.0),
