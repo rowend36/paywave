@@ -9,7 +9,7 @@ abstract class JSONSerializer<T> {
 
 class ResponseError implements Exception {
   final int code;
-  final Map<String, dynamic> message;
+  final String message;
   ResponseError(this.code, this.message);
 }
 
@@ -50,11 +50,13 @@ Future<Map<String, dynamic>> apiRequest(String path, HttpMethod method,
           body: body != null ? jsonEncode(body) : null,
           headers: allHeaders,
         ));
-
+  print(response.body);
   if (response.statusCode >= 200 && response.statusCode < 400) {
     return _tryDecode(response.body);
   } else {
-    throw ResponseError(response.statusCode, _tryDecode(response.body));
+    final m = _tryDecode(response.body);
+    throw ResponseError(response.statusCode,
+        m.containsKey("message") ? m["message"] : response.body);
   }
 }
 

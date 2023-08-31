@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:paywave/presentation/bloc/logic/auth.dart';
+import 'package:paywave/presentation/bloc/logic/requests.dart';
 import '../theme/main_theme.dart';
 import '../routes.dart';
 
@@ -20,11 +21,14 @@ class _SignInState extends State<SignIn> {
   final nameTextEditingController = TextEditingController();
   final addressTextEditingController = TextEditingController();
   final phoneTextEditingController = TextEditingController();
-
+  String? error;
   //declare a Global key
   final _formkey = GlobalKey<FormState>();
 
   void _submit() async {
+    setState(() {
+      error = null;
+    });
     try {
       if (_formkey.currentState!.validate()) {
         final navigator = Navigator.of(context);
@@ -35,6 +39,10 @@ class _SignInState extends State<SignIn> {
         navigator.pushReplacementNamed(AppRoutes.main);
       } else {}
       // Navigator.of(context).pop();
+    } on ResponseError catch (e) {
+      setState(() {
+        error = e.message;
+      });
     } catch (e) {
       print(e.toString());
     }
@@ -66,6 +74,12 @@ class _SignInState extends State<SignIn> {
             const SizedBox(
               height: 12,
             ),
+            error == null
+                ? const SizedBox.square()
+                : Text(
+                    error!,
+                    style: const TextStyle(fontSize: 16, color: Colors.red),
+                  ),
             const SizedBox(height: 16.0),
             Theme(
               data: ThemeData(

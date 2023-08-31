@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:paywave/presentation/bloc/logic/auth.dart';
+import 'package:paywave/presentation/bloc/logic/requests.dart';
 import '../theme/main_theme.dart';
 import '../routes.dart';
 
@@ -21,10 +22,14 @@ class _SignUpState extends State<SignUp> {
   final addressTextEditingController = TextEditingController();
   final phoneTextEditingController = TextEditingController();
 
+  String? error;
   //declare a Global key
   final _formkey = GlobalKey<FormState>();
 
   void _submit() async {
+    setState(() {
+      error = null;
+    });
     try {
       if (_formkey.currentState!.validate()) {
         final navigator = Navigator.of(context);
@@ -36,8 +41,16 @@ class _SignUpState extends State<SignUp> {
           phone: phoneTextEditingController.text.trim(),
         );
         navigator.pushReplacementNamed(AppRoutes.main);
-      } else {}
+      } else {
+        setState(() {
+          error = "Invalid values supplied";
+        });
+      }
       // Navigator.of(context).pop();
+    } on ResponseError catch (e) {
+      setState(() {
+        error = e.message;
+      });
     } catch (e) {
       print(e.toString());
     }
@@ -69,6 +82,12 @@ class _SignUpState extends State<SignUp> {
             const SizedBox(
               height: 12,
             ),
+            error == null
+                ? const SizedBox.square()
+                : Text(
+                    error!,
+                    style: const TextStyle(fontSize: 16, color: Colors.red),
+                  ),
             Theme(
                 data: ThemeData(
                     inputDecorationTheme: InputDecorationTheme(
@@ -246,11 +265,7 @@ class _SignUpState extends State<SignUp> {
             ),
             const SizedBox(height: 16.0),
             GestureDetector(
-              onTap: () {
-                //push to screen 1
-                // Navigator.pushNamed(
-                //     context, AppRoutes.onboarding_screen1);
-              },
+              onTap: _submit,
               child: Container(
                 decoration: BoxDecoration(
                   gradient: paywavetheme.gradientTheme,
