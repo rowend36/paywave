@@ -3,6 +3,10 @@ import 'package:email_validator/email_validator.dart';
 import 'package:paywave/presentation/bloc/logic/auth.dart';
 import '../theme/main_theme.dart';
 import '../routes.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:provider/provider.dart';
+import 'package:paywave/data/state/account.dart';
+import 'package:paywave/data/state/user.dart';
 
 class SignIn extends StatefulWidget {
   @override
@@ -12,6 +16,7 @@ class SignIn extends StatefulWidget {
 class _SignInState extends State<SignIn> {
   final AllTheme paywavetheme = AllTheme();
   bool _isPasswordVisible = false;
+  bool loadingApi = false;
 
   bool _isChecked = false; // State variable to track the checkbox state
   final _emailTextController = TextEditingController();
@@ -24,19 +29,31 @@ class _SignInState extends State<SignIn> {
   //declare a Global key
   final _formkey = GlobalKey<FormState>();
 
-  void _submit() async {
+  void _submit(BuildContext context) async {
     try {
       if (_formkey.currentState!.validate()) {
+        setState(() {
+          loadingApi = true;
+        });
+
         final navigator = Navigator.of(context);
-        await signIn(
+        final account_details = await signIn(
+          context,
           email: _emailTextController.text.trim(),
           password: _passwordTextController.text.trim(),
         );
+        Provider.of<AccountProvider>(context, listen: false)
+            .setAccountModel(account_details);
         navigator.pushReplacementNamed(AppRoutes.main);
       } else {}
       // Navigator.of(context).pop();
     } catch (e) {
-      print(e.toString());
+      setState(() {
+        loadingApi = false;
+      });
+      if (e.toString().contains("Failed host lookup")) {
+        Fluttertoast.showToast(msg: "No internet connection");
+      }
     }
   }
 
@@ -77,6 +94,7 @@ class _SignInState extends State<SignIn> {
                 ),
               ),
               child: TextFormField(
+                cursorColor: paywavetheme.customColor,
                 decoration: InputDecoration(
                     labelText: 'Email',
                     border:
@@ -114,6 +132,7 @@ class _SignInState extends State<SignIn> {
                 ),
               )),
               child: TextFormField(
+                cursorColor: paywavetheme.customColor,
                 obscureText: !_isPasswordVisible,
                 decoration: InputDecoration(
                   labelText: 'Password',
@@ -137,66 +156,60 @@ class _SignInState extends State<SignIn> {
                   if (text == null || text.isEmpty) {
                     return 'Password can\'t be empty';
                   }
-                  if (text.length < 6) {
-                    return "Password can not be less than 6";
+                  if (text.length < 2) {
+                    return 'Please enter a valid password';
                   }
-                  if (text.length > 25) {
-                    return 'Password can\'t be more than 25';
+                  if (text.length > 49) {
+                    return 'Password can\'t be more than 50';
+                  }
+                  // Check for uppercase characters
+                  if (text == text.toLowerCase()) {
+                    return 'Password must contain at least one uppercase character';
+                  }
+                  // Check for uppercase characters
+                  if (text == text.toUpperCase()) {
+                    return 'Password must contain at least one lowercase character';
+                  }
+                  // Check for special characters using a regular expression
+                  final specialChars = RegExp(r'[!@#\$%^&*(),.?":{}|<>]');
+                  if (!specialChars.hasMatch(text)) {
+                    return 'Password must contain at least one special character';
                   }
                 },
                 onChanged: (text) =>
                     setState(() => {_passwordTextController.text = text}),
               ),
             ),
-            const SizedBox(height: 3.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Container(
-                      padding: EdgeInsets.zero,
-                      margin: EdgeInsets.zero,
-                      child: Checkbox(
-                          value: _isChecked,
-                          onChanged: (bool? value) {
-                            setState(() {
-                              _isChecked = value!;
-                            });
-                          },
-                          activeColor: paywavetheme.customColor),
-                    ),
-                    const Text("Remember Password")
-                  ],
-                ),
-                GestureDetector(
-                  onTap: () {},
-                  child: const Text(
-                    "Forget Password ?",
-                  ),
-                )
-              ],
-            ),
+            const SizedBox(height: 16.0),
             const SizedBox(height: 16.0),
             GestureDetector(
-              onTap: _submit,
+              onTap: () {
+                if (!loadingApi) {
+                  _submit(context);
+                } else
+                  null;
+              },
               child: Container(
                 decoration: BoxDecoration(
                   gradient: paywavetheme.gradientTheme,
                   borderRadius: BorderRadius.circular(8.0),
                 ),
-                child: const Padding(
+                child: Padding(
                   padding: EdgeInsets.all(15.0),
                   child: Center(
-                    child: Text(
-                      'Sign In',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+                    child: !loadingApi
+                        ? Text(
+                            'Sign In',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          )
+                        : CircularProgressIndicator(
+                            color: Colors.white,
+                            strokeWidth: 2,
+                          ),
                   ),
                 ),
               ),

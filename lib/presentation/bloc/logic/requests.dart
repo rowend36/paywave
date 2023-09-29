@@ -1,5 +1,7 @@
 import "dart:convert";
 import "package:http/http.dart";
+import 'package:flutter/material.dart';
+import "package:fluttertoast/fluttertoast.dart";
 
 abstract class JSONSerializer<T> {
   T fromJSON(Map<String, dynamic> map);
@@ -16,6 +18,7 @@ enum HttpMethod { get, post }
 
 Map<String, dynamic> _tryDecode(dynamic e) {
   try {
+    Map<String, dynamic> response = json.decode(e);
     return jsonDecode(e);
   } catch (err) {
     return {"message": e};
@@ -40,6 +43,7 @@ Future<Map<String, dynamic>> apiRequest(String path, HttpMethod method,
     "Authorization": "Bearer $_accessToken",
     "Content-Type": "application/json"
   };
+
   final uri = Uri.parse("$_origin$path");
   if (headers != null) allHeaders.addAll(headers);
   final response = await (method == HttpMethod.get
@@ -51,8 +55,12 @@ Future<Map<String, dynamic>> apiRequest(String path, HttpMethod method,
         ));
 
   if (response.statusCode >= 200 && response.statusCode < 400) {
+    Fluttertoast.showToast(msg: _tryDecode(response.body)["message"]);
+
     return _tryDecode(response.body);
   } else {
+    Fluttertoast.showToast(msg: _tryDecode(response.body)["message"]);
+    print(_tryDecode(response.body));
     throw ResponseError(response.statusCode, _tryDecode(response.body));
   }
 }

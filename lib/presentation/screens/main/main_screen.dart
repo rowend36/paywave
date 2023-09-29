@@ -1,6 +1,9 @@
+import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:math';
 
+import 'package:paywave/presentation/pages/profile.dart';
+import 'package:paywave/presentation/pages/notifications.dart';
 import 'package:ficonsax/ficonsax.dart';
 import 'package:flutter/material.dart';
 import 'package:paywave/data/models/transactions.dart';
@@ -26,156 +29,72 @@ import 'widgets/choose_limit_dialog.dart';
 import 'widgets/one_time_payment_dialog.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
+  const MainScreen({Key? key}) : super(key: key);
 
   @override
   State<MainScreen> createState() => _MainScreenState();
 }
 
-final currentRoute = CurrentRoute(homeRoute);
+class _MainScreenState extends State<MainScreen>
+    with SingleTickerProviderStateMixin {
+  // final AllTheme sgtheme = AllTheme();
+  TabController? tabController;
+  int selectedIndex = 0;
 
-class _MainScreenState extends State<MainScreen> {
-  static const routes = [
-    homeRoute,
-    cardRoute,
-    profileRoute,
-    notificationsRoute
-  ];
-  static get pages => routes.map((e) => e.page).toList(growable: false);
-  bool isScrolling = false;
-  bool dialogShown = false;
-  late final PageController controller;
-  _MainScreenState() {
-    controller =
-        PageController(initialPage: pages.indexOf(currentRoute.value.page));
-    currentRoute.addListener(_updatePage);
-  }
-
-  @override
-  dispose() {
-    super.dispose();
-    currentRoute.removeListener(_updatePage);
-  }
-
-  _updatePage() async {
-    if (isScrolling) return;
-    debugPrint("Updating to ${currentRoute.value.name}");
-    try {
-      isScrolling = true;
-      await controller.animateToPage(
-          max(0, pages.indexOf(currentRoute.value.page)),
-          duration: const Duration(milliseconds: 600),
-          curve: Curves.ease);
-    } finally {
-      isScrolling = false;
-    }
-  }
-
-  _oneTimePayment() {
-    /**TODO One time payment */
-    _openDialog(const OneTimePaymentDialog());
-  }
-
-  Future _openDialog(Widget dialog, {dismissible = true}) {
-    return showDialog<DialogResult>(
-        context: context,
-        barrierDismissible: dismissible,
-        builder: (BuildContext context) {
-          return dialog;
-        }).then(_handleResult);
-  }
-
-  Future? _handleResult(DialogResult? result) {
-    switch (result) {
-      case DialogResult.oneTimePayment:
-        return _oneTimePayment();
-      case DialogResult.paymentLimit:
-        return _openDialog(const ChooseLimitDialog());
-      case DialogResult.numberOfTransactions:
-        return _openDialog(const NumberOfPaymentsDialog(), dismissible: false);
-      case DialogResult.done:
-        return _openDialog(const PaymentLimitSetDialog(), dismissible: false);
-      default:
-        return null;
-    }
-  }
-
-  _openCardLimit(BuildContext context) {
-    if (dialogShown) return;
+  onItemClicked(int index) {
     setState(() {
-      dialogShown = true;
-      Future.delayed(const Duration(milliseconds: 280)).then((_) {
-        _openDialog(const FloatingMenuDialog()).whenComplete(() => setState(() {
-              dialogShown = false;
-            }));
-      });
+      selectedIndex = index;
+      tabController!.index = selectedIndex;
     });
   }
 
   @override
+  void initState() {
+    super.initState();
+
+    tabController = TabController(length: 4, vsync: this);
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Theme(
-      data: appTheme2,
-      child: Builder(
-        builder: (context) => MultiProvider(
-          providers: [
-            ChangeNotifierProvider<CurrentRoute>(create: (_) => currentRoute),
-            ChangeNotifierProvider<CurrentUser>(create: (_) => currentUser),
-            ChangeNotifierProvider<UserAccount>(create: (_) => userAccount),
-            ChangeNotifierProvider<TransactionList>(
-                create: (_) => transactionList),
-          ],
-          child: Scaffold(
-            backgroundColor: AppColors.background,
-            body: PageView(
-              controller: controller,
-              onPageChanged: (page) {
-                if (isScrolling) return;
-                try {
-                  isScrolling = true;
-                  debugPrint("Changing route $page");
-                  currentRoute.value = routes[page];
-                } finally {
-                  isScrolling = false;
-                }
-              },
-              children: pages,
-            ),
-            bottomNavigationBar: BottomAppBar(
-              shape: CircularNotchedRectangle(),
-              clipBehavior: Clip.antiAliasWithSaveLayer,
-              child: SizedBox(
-                height: 80,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: <Widget>[
-                    RouteIcon(homeRoute),
-                    RouteIcon(cardRoute),
-                    SizedBox(width: 40), // The dummy child
-                    RouteIcon(profileRoute),
-                    RouteIcon(notificationsRoute),
-                  ],
-                ),
-              ),
-            ),
-            floatingActionButtonLocation:
-                FloatingActionButtonLocation.centerDocked,
-            floatingActionButton: FloatingActionButton(
-              onPressed: (() {
-                _openCardLimit(context);
-              }),
-              tooltip: 'Increment',
-              backgroundColor: AppColors.primary,
-              foregroundColor: AppColors.lightOnPrimary,
-              shape: const CircleBorder(),
-              child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 300),
-                  transform: Matrix4.rotationZ(dialogShown ? -pi / 4 : 0),
-                  transformAlignment: Alignment.center,
-                  child: const Icon(IconsaxOutline.add, size: 36)),
-            ),
-          ),
-        ),
+    // bool darkMode = isDarkMode(context);
+    return Scaffold(
+      body: TabBarView(
+          physics: NeverScrollableScrollPhysics(),
+          controller: tabController,
+          children: [HomePage(), Card(), ProfilePage(), Notifications()]),
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.card_membership_sharp), label: "Card"),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.notification_add), label: "Notification"),
+        ],
+        unselectedItemColor: AppColors.black,
+        selectedItemColor: AppColors.darkOnPrimary,
+        backgroundColor: AppColors.background,
+        type: BottomNavigationBarType.fixed,
+        selectedLabelStyle: TextStyle(fontSize: 14),
+        showUnselectedLabels: true,
+        currentIndex: selectedIndex,
+        onTap: onItemClicked,
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingActionButton(
+        onPressed: (() {
+          // _openCardLimit(context);
+        }),
+        tooltip: 'Increment',
+        backgroundColor: AppColors.primary,
+        foregroundColor: AppColors.lightOnPrimary,
+        shape: const CircleBorder(),
+        child: AnimatedContainer(
+            duration: const Duration(milliseconds: 300),
+            // transform: Matrix4.rotationZ(dialogShown ? -pi / 4 : 0),
+            transformAlignment: Alignment.center,
+            child: const Icon(IconsaxOutline.add, size: 36)),
       ),
     );
   }

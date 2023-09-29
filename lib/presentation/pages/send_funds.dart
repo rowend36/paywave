@@ -6,6 +6,7 @@ import 'package:paywave/presentation/screens/main/main_styles.dart';
 import 'package:paywave/presentation/screens/main/widgets/floating_menu_dialog.dart';
 import 'package:paywave/presentation/theme/app_colors.dart';
 import 'package:paywave/presentation/widget/preview_receiver_widget.dart';
+import 'package:paywave/presentation/screens/send_funds/send_details.dart';
 
 enum SendFundsResult { done }
 
@@ -17,7 +18,11 @@ class SendFunds extends StatefulWidget {
 }
 
 class _SendFundsState extends State<SendFunds> {
+  //global key
   final _formKey = GlobalKey<FormState>();
+  final amountTextEditingController = TextEditingController();
+  final accountNumberTextEditingController = TextEditingController();
+
   String userID = "";
   String amount = "";
   bool loading = false;
@@ -40,23 +45,37 @@ class _SendFundsState extends State<SendFunds> {
   }
 
   void _sendFunds() {
-    // setState(() {
-    //   loading = true;
-    //   Future.delayed(Duration(seconds: 3)).then((_) {
-    //     setState(() {
-    //       loading = false;
-    //       receiver = userAccount;
-    //     });
-    //   });
-    // });
+    try {
+      if (_formKey.currentState!.validate()) {
+        setState(() {
+          loading = true;
+        });
 
-    Navigator.pushNamed(context, AppRoutes.send_funds_details).then((_) {
-      finishWithResult(context, null);
-    });
+        final Map<String, dynamic> details = {
+          "amount": amountTextEditingController.text.trim(),
+          "accountNumber": accountNumberTextEditingController.text.trim()
+        };
+
+        // Navigator.pushNamed(context, AppRoutes.send_funds_details,
+        //     arguments: details);
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => SendFundDetails(
+                      send_details: details,
+                    )));
+      }
+    } catch (err) {
+      print(err);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    final args = ModalRoute.of(context)!.settings.arguments;
+    print(68);
+    print(args);
+
     return Dialog(
       backgroundColor: AppColors.white,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
@@ -81,23 +100,24 @@ class _SendFundsState extends State<SendFunds> {
                   padding: const EdgeInsets.only(top: 32, bottom: 8),
                   child: TextFormField(
                     decoration: const InputDecoration(
-                        labelText: "User ID/Account Number",
-                        hintText: "12524252452"),
+                      labelText: "Account Number",
+                      hintText: "12524252452",
+                    ),
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (text) {
                       if (text == null || text.isEmpty) {
-                        return 'Name can\'t be empty';
+                        return 'account number can\'t be empty';
                       }
-                      if (text.length < 2) {
-                        return "Please enter a valid name";
+                      if (text.length < 11) {
+                        return "Please enter a valid account number";
                       }
-                      if (text.length > 49) {
-                        return 'Name can\t be more than 50';
+                      if (text.length > 11) {
+                        return 'account number can\t be more than 11';
                       }
                     },
-                    onFieldSubmitted: (value) {
+                    onChanged: (value) {
                       setState(() {
-                        userID = value;
+                        accountNumberTextEditingController.text = value;
                       });
                     },
                   )),
@@ -111,18 +131,18 @@ class _SendFundsState extends State<SendFunds> {
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (text) {
                       if (text == null || text.isEmpty) {
-                        return 'Name can\'t be empty';
+                        return 'amount can\'t be empty';
                       }
                       if (text.length < 2) {
-                        return "Please enter a valid name";
+                        return "Please enter a valid amount";
                       }
                       if (text.length > 49) {
-                        return 'Name can\t be more than 50';
+                        return 'amount can\t be more than 50';
                       }
                     },
-                    onFieldSubmitted: (value) {
+                    onChanged: (value) {
                       setState(() {
-                        amount = value;
+                        amountTextEditingController.text = value;
                       });
                     },
                   )),

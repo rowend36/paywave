@@ -6,13 +6,15 @@ import 'package:paywave/presentation/screens/main/main_styles.dart';
 import 'package:paywave/presentation/theme/app_colors.dart';
 import 'package:paywave/presentation/widget/user_avatar.dart';
 import 'package:provider/provider.dart';
+import 'package:paywave/data/state/user.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    User? user = context.watch<CurrentUser>().value;
+    // User? user = context.watch<CurrentUser>().value;
+    var user = Provider.of<UserProvider>(context, listen: false).userModel;
     return ListView(shrinkWrap: true, children: [
       Stack(alignment: Alignment.topCenter, children: [
         Padding(
@@ -29,7 +31,7 @@ class ProfilePage extends StatelessWidget {
               width: double.infinity,
               child: Column(
                 children: [
-                  Text(user?.displayName ?? "",
+                  Text(user?.name ?? "",
                       style: MainStyles.titleMedium(context,
                           color: AppColors.lightOnPrimary)),
                   Padding(
