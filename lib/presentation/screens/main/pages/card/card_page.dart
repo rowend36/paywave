@@ -31,7 +31,8 @@ class _CardPageState extends State<CardPage> {
               borderRadius: BorderRadius.vertical(bottom: Radius.circular(24))),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 56, right: 24, left: 24),
+          padding:
+              const EdgeInsets.only(top: 56, right: 24, left: 24, bottom: 240),
           child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               // mainAxisSize: MainAxisSize.min,
@@ -59,7 +60,7 @@ class _CardPageState extends State<CardPage> {
                   style: MainStyles.whiteListButton(
                     context,
                   ),
-                  child: Text("Set pay time",
+                  child: Text("Set Pay Time",
                       style: MainStyles.titleMedium(context,
                           color: AppColors.black)),
                 ),
@@ -69,7 +70,7 @@ class _CardPageState extends State<CardPage> {
                   style: MainStyles.whiteListButton(
                     context,
                   ),
-                  child: Text("Set spending limit",
+                  child: Text("Set Spending Limit",
                       style: MainStyles.titleMedium(context,
                           color: AppColors.black)),
                 ),

@@ -5,11 +5,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../routes.dart';
 
 class Transaction extends StatefulWidget {
+  const Transaction({super.key});
+
   @override
-  _TransactionState createState() => _TransactionState();
+  TransactionState createState() => TransactionState();
 }
 
-class _TransactionState extends State<Transaction> {
+class TransactionState extends State<Transaction> {
   final AllTheme paywavetheme = AllTheme();
 
   bool filter = false;

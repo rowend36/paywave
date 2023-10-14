@@ -15,7 +15,7 @@ import 'package:paywave/presentation/pages/create_pin.dart';
 import 'package:paywave/presentation/screens/incorrect_otp.dart';
 import 'package:paywave/presentation/screens/pin_success.dart';
 import 'package:paywave/presentation/pages/send_funds.dart';
-import 'package:paywave/presentation/pages/profile.dart';
+import 'package:paywave/presentation/pages/home_profile.dart';
 
 import 'package:paywave/presentation/screens/send_funds/send_details.dart';
 import 'package:paywave/presentation/screens/send_funds/enter_transaction_pin.dart';
@@ -62,7 +62,7 @@ class AppRoutes {
       case signin:
         return MaterialPageRoute(builder: (_) => SignIn());
       case transaction:
-        return MaterialPageRoute(builder: (_) => Transaction());
+        return MaterialPageRoute(builder: (_) => const Transaction());
       case transaction_details:
         return MaterialPageRoute(builder: (_) => TransactionDetails());
       case main:
