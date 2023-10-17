@@ -5,6 +5,7 @@ import 'package:paywave/presentation/screens/main/pages/card/card_page.dart';
 import 'package:paywave/presentation/theme/app_colors.dart';
 import 'package:paywave/presentation/widget/onetap_card.dart';
 import 'package:paywave/data/models/user.dart';
+import 'package:paywave/data/state/user.dart';
 import 'package:paywave/data/models/user_account.dart';
 import 'package:paywave/presentation/widget/user_avatar.dart';
 import 'package:provider/provider.dart';
@@ -25,12 +26,13 @@ class _HomeTopSectionState extends State<HomeTopSection> {
   }
 
   _gotoCardPage() {
-    currentRoute.value = cardRoute;
+    // currentRoute.value = cardRoute;
   }
 
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    var user = Provider.of<UserProvider>(context, listen: false).userModel;
     return Container(
       height: 264,
       padding: const EdgeInsets.only(top: 56, right: 24, left: 24),
@@ -38,14 +40,14 @@ class _HomeTopSectionState extends State<HomeTopSection> {
           gradient: LinearGradient(colors: AppColors.gradient1),
           borderRadius: BorderRadius.vertical(bottom: Radius.circular(24))),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Consumer<CurrentUser>(
+        Consumer<User>(
           builder: (_, currentUser, __) => Padding(
             padding: const EdgeInsets.only(bottom: 24),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Hi ${currentUser.value?.firstName ?? ''}",
+                  "Hi ${user!.name ?? ''}",
                   style: textTheme.headlineLarge?.copyWith(
                     color: AppColors.darkPrimaryFixedDim,
                     fontSize: 32,
@@ -55,7 +57,7 @@ class _HomeTopSectionState extends State<HomeTopSection> {
                     leadingDistribution: TextLeadingDistribution.even,
                   ),
                 ),
-                UserAvatar(currentUser.value)
+                // UserAvatar(currentUser.value)
               ],
             ),
           ),

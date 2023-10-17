@@ -37,7 +37,7 @@ class AppRoutes {
   static const String pin = '/pin';
   static const String pin_success = '/pin/success';
   // static const String notification = '/notification';
-  // static const String send_funds = '/send/funds';
+  static const String send_funds = '/send/funds';
   // static const String profile = '/send/profile';
   static const String send_funds_details = '/send/funds/details';
   static const String send_funds_enter_pin = '/send/funds/details/enter_pin';
@@ -66,7 +66,7 @@ class AppRoutes {
       case transaction_details:
         return MaterialPageRoute(builder: (_) => TransactionDetails());
       case main:
-        return MaterialPageRoute(builder: (_) => const MainScreen());
+        return MaterialPageRoute(builder: (_) => MainScreen());
       case otp:
         return MaterialPageRoute(builder: (_) => OtpVerification());
       case pin:
@@ -75,9 +75,8 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => InvalidOtp());
       case pin_success:
         return MaterialPageRoute(builder: (_) => PinSuccess());
-
-      // case send_funds:
-      //   return MaterialPageRoute(builder: (_) => const SendFunds());
+      case send_funds:
+        return MaterialPageRoute(builder: (_) => const SendFunds());
       case send_funds_details:
         return MaterialPageRoute(builder: (_) => SendFundDetails());
       case send_funds_enter_pin:

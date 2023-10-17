@@ -3,6 +3,8 @@ import '../theme/main_theme.dart';
 import '../bloc/svg/svg.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../routes.dart';
+import '../bloc/logic/requests.dart';
+import '../../data/models/user.dart';
 
 class Notifications extends StatefulWidget {
   const Notifications({super.key});
@@ -15,6 +17,15 @@ class _NotificationsState extends State<Notifications> {
   final AllTheme paywavetheme = AllTheme();
 
   bool filter = false;
+
+  Future<void> getNotificationTion() async {
+    try {
+      final res = await apiGet("/Notification/GetNotification/");
+      print(res);
+    } catch (err) {
+      print(err);
+    }
+  }
 
   List<Widget> _buildChildren() {
     return [

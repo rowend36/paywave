@@ -7,6 +7,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:paywave/presentation/routes.dart';
 
 class SendFundDetails extends StatefulWidget {
+  final send_details;
+  const SendFundDetails({this.send_details});
+
   @override
   _SendFundDetailsState createState() => _SendFundDetailsState();
 }
@@ -14,8 +17,19 @@ class SendFundDetails extends StatefulWidget {
 class _SendFundDetailsState extends State<SendFundDetails> {
   final AllTheme paywavetheme = AllTheme();
 
-  final accountNumberTextController = TextEditingController();
-  final amountTextController = TextEditingController();
+  Map<String, dynamic>? receivedData;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Access the arguments when the widget is initialized or when it receives new arguments.
+    setState(() {
+      receivedData =
+          ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
+    });
+
+    print(ModalRoute.of(context)?.settings.arguments);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +77,7 @@ class _SendFundDetailsState extends State<SendFundDetails> {
                           fontWeight: FontWeight.bold),
                     ),
                     TextSpan(
-                      text: '#20,000',
+                      text: '${widget.send_details?['amount']}',
                       style: TextStyle(
                           color: paywavetheme
                               .customColor, // Highlight color for amount
@@ -89,7 +103,7 @@ class _SendFundDetailsState extends State<SendFundDetails> {
               ),
               SizedBox(height: 30),
               Text(
-                "Account Number - 27638872626",
+                "Account Number - ${widget.send_details?['accountNumber']}",
                 style: TextStyle(color: paywavetheme.customColor),
               ),
               SizedBox(height: 30),

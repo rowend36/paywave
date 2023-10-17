@@ -54,7 +54,7 @@ class _TransactionDetailsState extends State<TransactionDetails> {
                 decoration: BoxDecoration(
                     color: const Color.fromRGBO(103, 80, 164, 0.16),
                     borderRadius: BorderRadius.circular(16.0)),
-                child: const Column(
+                child: Column(
                   children: [
                     Text(
                       "You sent",

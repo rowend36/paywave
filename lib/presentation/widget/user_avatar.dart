@@ -17,7 +17,7 @@ class UserAvatar extends StatelessWidget {
             user?.photoURL != null ? NetworkImage(user!.photoURL!) : null,
         child: user?.photoURL != null
             ? null
-            : Text(user?.initials ?? "",
+            : Text("user?.initials" ?? "",
                 style: MainStyles.titleLarge(context, color: AppColors.white)));
   }
 }

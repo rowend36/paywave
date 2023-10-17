@@ -1,170 +1,163 @@
-import 'package:ficonsax/ficonsax.dart';
 import 'package:flutter/material.dart';
-import 'package:paywave/data/models/app_route.dart';
-import 'package:paywave/data/models/transactions.dart';
-import 'package:paywave/presentation/bloc/logic/auth.dart';
-import 'package:paywave/presentation/pages/send_funds.dart';
-import 'package:paywave/presentation/screens/main/pages/home/home_top_section.dart';
-import 'package:paywave/presentation/screens/main/widgets/transaction_item_widget.dart';
-import 'package:paywave/presentation/screens/main/main_styles.dart';
-import 'package:paywave/presentation/theme/app_colors.dart';
-import 'package:provider/provider.dart';
 
-class HomePage extends StatelessWidget {
+import 'package:provider/provider.dart';
+// import 'package:sgpaypoint/presentation/routes.dart';
+import 'package:paywave/presentation/theme/app_colors.dart';
+import 'package:paywave/presentation/theme/app_theme.dart';
+import 'package:paywave/presentation/theme/main_theme.dart';
+import 'package:provider/provider.dart';
+import 'package:paywave/data/state/account.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:paywave/presentation/screens/send_funds/send_details.dart';
+import 'package:paywave/presentation/pages/send_funds.dart';
+
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
-  void _sendFunds(BuildContext context) {
-    showDialog(context: context, builder: (context) => const SendFunds());
-  }
 
   @override
-  Widget build(BuildContext context) {
-    return ListView(shrinkWrap: true, children: [
-      const HomeTopSection(),
-      Padding(
-        padding:
-            const EdgeInsets.only(left: 24, right: 24, top: 32, bottom: 128),
-        child:
-            Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-          Padding(
-            padding: const EdgeInsets.only(bottom: 32),
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  OutlinedButton.icon(
-                    onPressed: () => _sendFunds(context),
-                    style: MainStyles.outlinedButton1(context),
-                    icon: const Icon(IconsaxBold.send_2),
-                    label: const Text("Send Money"),
-                  ),
-                  OutlinedButton.icon(
-                      onPressed: () => _sendFunds,
-                      style: MainStyles.outlinedButton1(context),
-                      icon: const Icon(IconsaxBold.money_recive),
-                      label: const Text("Fund Card"))
-                ]),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 16),
-            child: ElevatedButton(
-              onPressed: () {
-                /** TODO */
-              },
-              style: MainStyles.listButton(context),
-              child: Row(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(10),
-                    margin:
-                        const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-                    decoration: ShapeDecoration(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8)),
-                        color: AppColors.lightPrimaryContainer),
-                    child: const Icon(
-                        size: 18,
-                        IconsaxOutline.driving,
-                        color: AppColors.primary),
-                  ),
-                  Text("Pay for transportation",
-                      style: MainStyles.labelLarge(context)),
-                  const Spacer(),
-                  const Icon(IconsaxOutline.arrow_right_3,
-                      color: AppColors.black)
-                ],
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 16),
-            child: ElevatedButton(
-              onPressed: () {
-                /** TODO */
-              },
-              style: MainStyles.listButton(context),
-              child: Row(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(10),
-                    margin:
-                        const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-                    decoration: ShapeDecoration(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8)),
-                        color: AppColors.lightPrimaryContainer),
-                    child: const Icon(
-                        size: 18,
-                        IconsaxBold.shopping_cart,
-                        color: AppColors.primary),
-                  ),
-                  Text("Shopping checkout",
-                      style: MainStyles.labelLarge(context)),
-                  const Spacer(),
-                  const Icon(IconsaxOutline.arrow_right_3,
-                      color: AppColors.black)
-                ],
-              ),
-            ),
-          ),
-          Consumer<TransactionList>(
-            builder: (context, provider, header) {
-              if (provider.isLoading) {
-                return Column(children: [
-                  header as Widget,
-                  const Center(
-                    heightFactor: 2,
-                    child: CircularProgressIndicator(
-                      color: AppColors.primary,
-                    ),
-                  )
-                ]);
-              }
-              if (provider.transactions.isEmpty) {
-                return Column(
-                  children: [
-                    Padding(
-                        padding: const EdgeInsets.only(top: 32, bottom: 48),
-                        child: Text("No Transaction activity",
-                            style: MainStyles.titleLarge(context))),
-                    Image.asset("public/images/11578-wallet.png")
-                  ],
-                );
-              }
-              return Column(
-                children: [
-                  header as Widget,
-                  ...provider.transactions.map((e) =>
-                      TransactionItemWidget(transaction: e, key: ObjectKey(e)))
-                ],
-              );
-            },
-            child: Padding(
-              padding: const EdgeInsets.only(top: 32, bottom: 8),
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.baseline,
-                  textBaseline: TextBaseline.alphabetic,
-                  children: [
-                    Text("Transaction History",
-                        style: MainStyles.titleLarge(context)),
-                    TextButton(
-                        onPressed: () {
-                          /**TODO */
-                        },
-                        style: TextButton.styleFrom(
-                            foregroundColor: AppColors.lightOnPrimaryContainer,
-                            alignment: Alignment.centerRight),
-                        child: const Text("See All")),
-                  ]),
-            ),
-          ),
-        ]),
-      )
-    ]);
-  }
+  State<HomePage> createState() => _HomePageState();
 }
 
-const homeRoute = AppRoute(
-    name: "Home",
-    icon: IconsaxOutline.home_hashtag,
-    iconActive: IconsaxBold.home_hashtag,
-    page: HomePage());
+class _HomePageState extends State<HomePage> {
+  AllTheme paywavetheme = AllTheme();
+  @override
+  Widget build(BuildContext context) {
+    double screen_width = MediaQuery.of(context).size.width;
+    double screen_height = MediaQuery.of(context).size.height;
+    final account_details =
+        Provider.of<AccountProvider>(context, listen: false).accountModel;
+
+    return Scaffold(
+        backgroundColor: AppColors.background,
+        body: SingleChildScrollView(
+          child: Container(
+            margin: EdgeInsets.only(top: 100),
+            decoration: BoxDecoration(
+                gradient: paywavetheme.gradientTheme,
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20))),
+            height: screen_height,
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Container(
+                width: screen_width,
+                padding: EdgeInsets.only(top: 40, bottom: 40),
+                // margin: EdgeInsets.symmetric(horizontal: 10.0),
+                decoration: BoxDecoration(
+                    // color: sgtheme.blackColor,
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(30),
+                        bottomRight: Radius.circular(30))),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    CircleAvatar(
+                      backgroundColor: AppColors
+                          .darkOnPrimary, // Change the background color as needed
+                      // backgroundColor: AppColors.darkPrimaryFixedDim,
+                      radius: 30,
+                      child: Text(
+                        "M",
+                        style: TextStyle(
+                          color:
+                              Colors.white, // Change the text color as needed
+                          fontSize: 20, // Adjust the text size as needed
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    Text(
+                      "Moses",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.darkOnPrimary),
+                    ),
+                    SizedBox(height: 20),
+                    Text("benmos16@gmail.com",
+                        style: TextStyle(
+                            color: AppColors.darkOnPrimary,
+                            fontWeight: FontWeight.bold)),
+                    SizedBox(height: 20),
+                    Text(
+                      "Account Number : ${account_details?.accountNumber ?? "no account number yet"}",
+                      style: TextStyle(
+                          color: AppColors.darkOnPrimary,
+                          fontWeight: FontWeight.bold),
+                    )
+                  ],
+                ),
+              ),
+
+              Container(
+                padding: EdgeInsets.all(20),
+                child: Card(
+                  child: Column(
+                    children: [
+                      GestureDetector(
+                        onTap: null,
+                        child: Container(
+                            padding: EdgeInsets.symmetric(vertical: 15),
+                            child: Text(
+                              "Change Transactional Pin",
+                              textAlign: TextAlign.start,
+                            )),
+                      ),
+                      Divider(),
+                      GestureDetector(
+                        onTap: null,
+                        child: Container(
+                            padding: EdgeInsets.symmetric(vertical: 15),
+                            child: Text("Change Password")),
+                      ),
+                      Divider(),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => SendFunds()));
+                        },
+                        child: Container(
+                            padding: EdgeInsets.symmetric(vertical: 15),
+                            child: Text(
+                              "Send Funds",
+                              textAlign: TextAlign.start,
+                            )),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+
+              // Wrap(
+              //   spacing: 50,
+              //   runSpacing: 0.8,
+              //   children: [
+              //     GestureDetector(
+              //         onTap: null,
+              //         child: Column(children: [
+              //           Container(
+              //               padding: EdgeInsets.all(10),
+              //               decoration: BoxDecoration(
+              //                   color: AppColors.darkOnPrimary,
+              //                   borderRadius: BorderRadius.circular(10)),
+              //               child: Icon(FontAwesomeIcons.bank)),
+              //           SizedBox(
+              //             height: 5,
+              //           ),
+              //           Text(
+              //             "Deposit",
+              //             style: TextStyle(
+              //               color: Colors.white,
+              //             ),
+              //           )
+              //         ])),
+              //   ],
+              // )
+            ]),
+          ),
+        ));
+  }
+}
