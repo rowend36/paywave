@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:math';
 
-import 'package:paywave/presentation/pages/profile.dart';
+import 'package:paywave/presentation/pages/home_profile.dart';
 import 'package:paywave/presentation/pages/notifications.dart';
 import 'package:ficonsax/ficonsax.dart';
 import 'package:flutter/material.dart';

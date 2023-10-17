@@ -43,7 +43,6 @@ dependencies:
   hive: ^2.2.3
   ficonsax: ^0.0.3
   http: ^0.13.6
-  font_awesome: ^5.10.1
   font_awesome_flutter: ^10.4.0
   # http: ^1.1.0
 
