@@ -10,11 +10,7 @@ import 'package:paywave/presentation/theme/app_colors.dart';
 import 'package:paywave/presentation/theme/app_theme.dart';
 import 'package:provider/provider.dart';
 import 'package:paywave/presentation/widget/route_icon.dart';
-import 'package:paywave/presentation/bloc/logic/auth.dart';
-import 'package:paywave/presentation/bloc/logic/finances.dart';
-import 'package:paywave/data/models/app_route.dart';
-import 'package:paywave/data/models/user.dart';
-import 'package:paywave/data/models/user_account.dart';
+import 'package:paywave/data/models/page_data.dart';
 
 import 'pages/card/card_page.dart';
 import 'pages/home/home_page.dart';
@@ -32,7 +28,7 @@ class MainScreen extends StatefulWidget {
   State<MainScreen> createState() => _MainScreenState();
 }
 
-final currentRoute = CurrentRoute(homeRoute);
+final currentRoute = CurrentPage(homeRoute);
 
 class _MainScreenState extends State<MainScreen> {
   static const routes = [
@@ -119,9 +115,7 @@ class _MainScreenState extends State<MainScreen> {
       child: Builder(
         builder: (context) => MultiProvider(
           providers: [
-            ChangeNotifierProvider<CurrentRoute>(create: (_) => currentRoute),
-            ChangeNotifierProvider<CurrentUser>(create: (_) => currentUser),
-            ChangeNotifierProvider<UserAccount>(create: (_) => userAccount),
+            ChangeNotifierProvider<CurrentPage>(create: (_) => currentRoute),
             ChangeNotifierProvider<TransactionList>(
                 create: (_) => transactionList),
           ],
@@ -149,11 +143,11 @@ class _MainScreenState extends State<MainScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
-                    RouteIcon(homeRoute),
-                    RouteIcon(cardRoute),
+                    PageIcon(homeRoute),
+                    PageIcon(cardRoute),
                     SizedBox(width: 40), // The dummy child
-                    RouteIcon(profileRoute),
-                    RouteIcon(notificationsRoute),
+                    PageIcon(profileRoute),
+                    PageIcon(notificationsRoute),
                   ],
                 ),
               ),

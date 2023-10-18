@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ficonsax/ficonsax.dart';
-import 'package:paywave/data/models/user.dart';
 import 'package:paywave/data/models/user_account.dart';
+import 'package:paywave/data/state/account.dart';
+import 'package:paywave/presentation/routes.dart';
 import 'package:paywave/presentation/screens/main/main_styles.dart';
 import 'package:paywave/presentation/theme/app_colors.dart';
 import 'package:paywave/presentation/widget/user_avatar.dart';
@@ -26,14 +27,16 @@ class ProfilePage extends StatelessWidget {
               borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
           width: double.infinity,
           child: Column(children: [
-            Text(user?.name ?? "",
+            Text(user?.name ?? "No name provided",
                 style: MainStyles.titleMedium(context,
-                    color: AppColors.lightOnPrimary)),
+                    color: user?.name == null
+                        ? AppColors.neutral87
+                        : AppColors.lightOnPrimary)),
             Padding(
                 padding: const EdgeInsets.only(top: 8, bottom: 32),
-                child: Consumer<UserAccount>(
-                  builder: (_, userAccount, __) => Text(
-                      "Account Number -  ${userAccount.acctNumber}",
+                child: Consumer<AccountProvider>(
+                  builder: (_, provider, __) => Text(
+                      "Account Number -  ${provider.accountModel?.accountNumber}",
                       style: MainStyles.titleMedium(context,
                           color: AppColors.lightOnPrimary)),
                 )),
@@ -51,6 +54,7 @@ class ProfilePage extends StatelessWidget {
                   child: ElevatedButton(
                     onPressed: () {
                       /* TODO */
+                      Navigator.of(context).pushNamed(AppRoutes.update_profile);
                     },
                     style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.primary,

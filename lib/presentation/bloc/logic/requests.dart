@@ -1,4 +1,5 @@
 import "dart:convert";
+import "dart:io";
 import "package:http/http.dart";
 import "package:fluttertoast/fluttertoast.dart";
 
@@ -17,7 +18,6 @@ enum HttpMethod { get, post }
 
 Map<String, dynamic> _tryDecode(dynamic e) {
   try {
-    Map<String, dynamic> response = json.decode(e);
     return jsonDecode(e);
   } catch (err) {
     return {"message": e};
@@ -54,12 +54,13 @@ Future<Map<String, dynamic>> apiRequest(String path, HttpMethod method,
         ));
   print(response.body);
   if (response.statusCode >= 200 && response.statusCode < 400) {
-    Fluttertoast.showToast(msg: _tryDecode(response.body)["message"]);
-
+    if (!Platform.isWindows) {
+      Fluttertoast.showToast(msg: _tryDecode(response.body)["message"]);
+    }
     return _tryDecode(response.body);
   } else {
     final msg = _tryDecode(response.body);
-    Fluttertoast.showToast(msg: msg["message"]);
+    if (!Platform.isWindows) Fluttertoast.showToast(msg: msg["message"]);
     print(msg["message"]);
     throw ResponseError(response.statusCode,
         msg.containsKey("message") ? msg["message"] : response.body);

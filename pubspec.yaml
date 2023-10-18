@@ -44,6 +44,7 @@ dependencies:
   ficonsax: ^0.0.3
   http: ^0.13.6
   font_awesome_flutter: ^10.4.0
+  image_picker: ^1.0.4
   # http: ^1.1.0
 
 dev_dependencies:

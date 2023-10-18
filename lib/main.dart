@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:paywave/data/state/card.dart';
 import 'package:paywave/presentation/routes.dart';
 import 'package:paywave/presentation/theme/app_theme.dart';
 import 'package:paywave/presentation/theme/main_theme.dart';
@@ -19,7 +20,8 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => AccountProvider()),
-        ChangeNotifierProvider(create: (context) => UserProvider())
+        ChangeNotifierProvider(create: (context) => UserProvider()),
+        ChangeNotifierProvider(create: (context) => CardProvider())
       ],
       child: MaterialApp(
         title: 'One Tap',

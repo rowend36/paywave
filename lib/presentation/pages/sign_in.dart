@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:paywave/presentation/bloc/logic/auth.dart';
@@ -60,7 +62,9 @@ class _SignInState extends State<SignIn> {
         loadingApi = false;
       });
       if (e.toString().contains("Failed host lookup")) {
-        Fluttertoast.showToast(msg: "No internet connection");
+        if (!Platform.isWindows) {
+          Fluttertoast.showToast(msg: "No internet connection");
+        }
       }
     }
   }

@@ -1,15 +1,9 @@
-import 'dart:convert';
-
 import 'package:paywave/data/models/user.dart';
 import 'package:paywave/data/models/account_details.dart';
 import './requests.dart';
 import 'package:flutter/material.dart' show BuildContext;
-import '../../routes.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
-import 'package:paywave/data/state/account.dart';
 import 'package:paywave/data/state/user.dart';
-import 'package:paywave/data/models/user.dart';
 
 class UserSerializer implements JSONSerializer<User> {
   @override

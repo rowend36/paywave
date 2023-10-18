@@ -15,11 +15,12 @@ import 'package:paywave/presentation/pages/create_pin.dart';
 import 'package:paywave/presentation/screens/incorrect_otp.dart';
 import 'package:paywave/presentation/screens/pin_success.dart';
 import 'package:paywave/presentation/pages/send_funds.dart';
-import 'package:paywave/presentation/pages/home_profile.dart';
+import 'package:paywave/presentation/pages/profile.dart';
 
 import 'package:paywave/presentation/screens/send_funds/send_details.dart';
 import 'package:paywave/presentation/screens/send_funds/enter_transaction_pin.dart';
 import 'package:paywave/presentation/screens/send_funds/send_success.dart';
+import 'package:paywave/presentation/screens/update_profile.dart';
 
 class AppRoutes {
   static const String home = '/';
@@ -32,6 +33,7 @@ class AppRoutes {
   static const String transaction = '/transaction';
   static const String transaction_details = '/transaction/details';
   static const String main = '/main';
+  static const String update_profile = '/main/update_profile';
   static const String otp = "/otp";
   static const String otp_invalid = '/otp/error';
   static const String pin = '/pin';
@@ -66,7 +68,9 @@ class AppRoutes {
       case transaction_details:
         return MaterialPageRoute(builder: (_) => TransactionDetails());
       case main:
-        return MaterialPageRoute(builder: (_) => MainScreen());
+        return MaterialPageRoute(builder: (_) => const MainScreen());
+      case update_profile:
+        return MaterialPageRoute(builder: (_) => UpdateProfileScreen());
       case otp:
         return MaterialPageRoute(builder: (_) => OtpVerification());
       case pin:

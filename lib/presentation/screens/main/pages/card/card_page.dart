@@ -1,7 +1,9 @@
 import 'package:ficonsax/ficonsax.dart';
 import 'package:flutter/material.dart';
-import 'package:paywave/data/models/app_route.dart';
+import 'package:paywave/data/models/page_data.dart';
 import 'package:paywave/data/models/user_account.dart';
+import 'package:paywave/data/state/account.dart';
+import 'package:paywave/data/state/card.dart';
 import 'package:paywave/presentation/screens/main/main_styles.dart';
 import 'package:paywave/presentation/theme/app_colors.dart';
 import 'package:paywave/presentation/widget/onetap_card.dart';
@@ -16,7 +18,7 @@ class CardPage extends StatefulWidget {
 
 class _CardPageState extends State<CardPage> {
   void _setCardActivation(bool value) {
-    /* TODO */
+    /* TODO - card activation */
   }
 
   @override
@@ -75,18 +77,26 @@ class _CardPageState extends State<CardPage> {
                           color: AppColors.black)),
                 ),
                 const Divider(height: 1, color: AppColors.neutral87),
-                Consumer<UserAccount>(builder: (_, userAccount, __) {
+                Consumer<CardProvider>(builder: (_, provider, __) {
+                  var loaded = provider.cardModel != null;
+                  var isActivated =
+                      loaded ? provider.cardModel!.cardActivated : false;
+
                   return ElevatedButton(
                     onPressed: () {
-                      _setCardActivation(!userAccount.cardActivated);
+                      if (loaded) {
+                        _setCardActivation(!isActivated);
+                      }
                     },
                     style: MainStyles.whiteListButton(context, bottom: true),
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Text("Deactivate card"),
+                          Text(isActivated ? "Deactivate card" : "Activated",
+                              style: MainStyles.titleMedium(context,
+                                  color: AppColors.black)),
                           Switch(
-                              value: userAccount.cardActivated,
+                              value: isActivated,
                               activeColor: AppColors.primary,
                               onChanged: _setCardActivation)
                         ]),
@@ -99,7 +109,7 @@ class _CardPageState extends State<CardPage> {
   }
 }
 
-const cardRoute = AppRoute(
+const cardRoute = PageData(
     name: "Card",
     icon: IconsaxOutline.card_pos,
     iconActive: IconsaxBold.card_pos,

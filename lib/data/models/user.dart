@@ -13,15 +13,12 @@ class User {
       this.phoneNumber,
       this.photoURL});
 
-  // get initials {
-  //   return firstName![0] + lastName![0];
-  // }
-
-  // get name {
-  //   return "$firstName $lastName";
-  // }
-
-  // get displayName => name;
+  getInitials() {
+    if (name == null) {
+      return "";
+    } else {
+      var parts = name!.split(" ");
+      return parts.first[0].toUpperCase() + parts.last[0].toUpperCase();
+    }
+  }
 }
-
-// typedef CurrentUser = ValueNotifier<User?>;

@@ -1,5 +1,6 @@
 import 'package:ficonsax/ficonsax.dart';
 import 'package:flutter/material.dart';
+import 'package:paywave/data/state/account.dart';
 import 'package:paywave/presentation/screens/main/main_screen.dart';
 import 'package:paywave/presentation/screens/main/pages/card/card_page.dart';
 import 'package:paywave/presentation/theme/app_colors.dart';
@@ -32,7 +33,6 @@ class _HomeTopSectionState extends State<HomeTopSection> {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-    var user = Provider.of<UserProvider>(context, listen: false).userModel;
     return Container(
       height: 264,
       padding: const EdgeInsets.only(top: 56, right: 24, left: 24),
@@ -40,14 +40,14 @@ class _HomeTopSectionState extends State<HomeTopSection> {
           gradient: LinearGradient(colors: AppColors.gradient1),
           borderRadius: BorderRadius.vertical(bottom: Radius.circular(24))),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Consumer<User>(
-          builder: (_, currentUser, __) => Padding(
+        Consumer<UserProvider>(
+          builder: (_, provider, __) => Padding(
             padding: const EdgeInsets.only(bottom: 24),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Hi ${user!.name ?? ''}",
+                  "Hi ${provider.userModel!.name ?? ''}",
                   style: textTheme.headlineLarge?.copyWith(
                     color: AppColors.darkPrimaryFixedDim,
                     fontSize: 32,
@@ -57,7 +57,7 @@ class _HomeTopSectionState extends State<HomeTopSection> {
                     leadingDistribution: TextLeadingDistribution.even,
                   ),
                 ),
-                // UserAvatar(currentUser.value)
+                UserAvatar(provider.userModel)
               ],
             ),
           ),
@@ -76,8 +76,8 @@ class _HomeTopSectionState extends State<HomeTopSection> {
         ),
         Padding(
           padding: const EdgeInsets.only(bottom: 24),
-          child: Consumer<UserAccount>(
-              builder: (_, userAccount, __) =>
+          child: Consumer<AccountProvider>(
+              builder: (_, provider, __) =>
                   Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
                     Text("\$",
                         style: textTheme.headlineLarge?.copyWith(
@@ -93,7 +93,7 @@ class _HomeTopSectionState extends State<HomeTopSection> {
                         child: Transform.translate(
                             offset: Offset(0, showBalance ? 0 : 5),
                             child: Text(
-                                "${showBalance ? userAccount.acctBalance : " *****"}",
+                                "${showBalance ? provider.accountModel?.availableBalance : " *****"}",
                                 style: textTheme.headlineLarge?.copyWith(
                                   color: AppColors.lightOnPrimary,
                                   fontSize: 32,

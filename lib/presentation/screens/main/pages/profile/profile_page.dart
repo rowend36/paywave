@@ -1,8 +1,8 @@
 import 'package:ficonsax/ficonsax.dart';
-import 'package:paywave/data/models/app_route.dart';
-import 'package:paywave/presentation/pages/home_profile.dart';
+import 'package:paywave/data/models/page_data.dart';
+import 'package:paywave/presentation/pages/profile.dart';
 
-const profileRoute = AppRoute(
+const profileRoute = PageData(
     name: "Profile",
     icon: IconsaxOutline.user,
     iconActive: IconsaxBold.user,

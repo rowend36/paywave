@@ -1,6 +1,6 @@
 import 'package:ficonsax/ficonsax.dart';
 import 'package:flutter/material.dart';
-import 'package:paywave/data/models/app_route.dart';
+import 'package:paywave/data/models/page_data.dart';
 import 'package:paywave/data/models/transactions.dart';
 import 'package:paywave/presentation/bloc/logic/auth.dart';
 import 'package:paywave/presentation/pages/send_funds.dart';
@@ -44,66 +44,40 @@ class HomePage extends StatelessWidget {
                 ]),
           ),
           Padding(
-            padding: const EdgeInsets.only(bottom: 16),
-            child: ElevatedButton(
-              onPressed: () {
-                /** TODO */
-              },
-              style: MainStyles.listButton(context),
-              child: Row(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(10),
-                    margin:
-                        const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-                    decoration: ShapeDecoration(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8)),
-                        color: AppColors.lightPrimaryContainer),
-                    child: const Icon(
-                        size: 18,
-                        IconsaxOutline.driving,
-                        color: AppColors.primary),
-                  ),
-                  Text("Pay for transportation",
-                      style: MainStyles.labelLarge(context)),
-                  const Spacer(),
-                  const Icon(IconsaxOutline.arrow_right_3,
-                      color: AppColors.black)
-                ],
-              ),
+            padding: const EdgeInsets.only(
+              top: 43,
+              bottom: 32,
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 16),
-            child: ElevatedButton(
-              onPressed: () {
-                /** TODO */
-              },
-              style: MainStyles.listButton(context),
-              child: Row(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(10),
-                    margin:
-                        const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-                    decoration: ShapeDecoration(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8)),
-                        color: AppColors.lightPrimaryContainer),
-                    child: const Icon(
-                        size: 18,
-                        IconsaxBold.shopping_cart,
-                        color: AppColors.primary),
-                  ),
-                  Text("Shopping checkout",
-                      style: MainStyles.labelLarge(context)),
-                  const Spacer(),
-                  const Icon(IconsaxOutline.arrow_right_3,
-                      color: AppColors.black)
-                ],
+            child: Center(
+                child: Container(
+              constraints: const BoxConstraints(maxWidth: 360),
+              padding: const EdgeInsets.symmetric(vertical: 33, horizontal: 16),
+              decoration: const BoxDecoration(
+                  image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: AssetImage("public/images/coming_soon.png")),
+                  borderRadius: BorderRadius.all(Radius.circular(24))),
+              child: Container(
+                padding: const EdgeInsets.all(18),
+                color: AppColors.lightPrimaryContainer,
+                child: Row(
+                  /* TODO make it shine */
+                  children: [
+                    Icon(
+                      IconsaxOutline.warning_2,
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.only(left: 16),
+                    ),
+                    Expanded(
+                        child: Text(
+                      "Airtime and Data wil be launched soon !!!",
+                      style: MainStyles.titleMedium(context),
+                    ))
+                  ],
+                ),
               ),
-            ),
+            )),
           ),
           Consumer<TransactionList>(
             builder: (context, provider, header) {
@@ -163,7 +137,7 @@ class HomePage extends StatelessWidget {
   }
 }
 
-const homeRoute = AppRoute(
+const homeRoute = PageData(
     name: "Home",
     icon: IconsaxOutline.home_hashtag,
     iconActive: IconsaxBold.home_hashtag,
